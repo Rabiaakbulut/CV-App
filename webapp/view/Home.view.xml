@@ -1,0 +1,52 @@
+<mvc:View controllerName="cvapp.controller.Home"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <content>
+         <Table
+                id="table"
+                width="auto"
+                items="{CvInfoModel>/}"
+                growing="true"
+                growingScrollToLoad="true">
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <Title
+                            id="tableHeader"
+                            text="{i18n>OverflowToolbar}"
+                            level="H3"/>
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column>
+                        <Text text="{i18n>name}"/>
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>lastUpdate}"/>
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>download}"/>
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>actions}"/>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem type="Navigation" press=".onPress">
+                        <cells>
+                            <ObjectIdentifier
+                                title="{CvInfoModel>NAME}"/>
+                            <ObjectIdentifier
+                                title="{CvInfoModel>LAST_UPDATE}"/>
+                            <Button press="onDownloadCV" icon="sap-icon://download"></Button>   
+                            <VBox >
+                                <Button press="onOpenCV" icon="sap-icon://edit"></Button>
+                                <Button press="onDeleteCV" icon="sap-icon://delete"></Button>
+                            </VBox >
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>

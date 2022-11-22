@@ -1,0 +1,11 @@
+<mvc:View controllerName="cvapp.controller.Cv"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout">
+	<Page>
+    <content>
+    
+		<Text text="deneme"></Text>
+    </content>
+	</Page>
+</mvc:View>
