@@ -1,0 +1,48 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+	xmlns:u="sap.ui.unified">
+   <Dialog
+      id="educationDialog"
+      title ="{i18n>educationDialogTitle}">
+        <content>
+            <f:SimpleForm id="SimpleFormDisplay354"
+                editable="false"
+                layout="ResponsiveGridLayout"
+                labelSpanXL="3"
+                labelSpanL="3"
+                labelSpanM="3"
+                labelSpanS="12"
+                adjustLabelSpan="false"
+                emptySpanXL="4"
+                emptySpanL="4"
+                emptySpanM="4"
+                emptySpanS="0"
+                columnsXL="1"
+                columnsL="1"
+                columnsM="1"
+                singleContainerFullSize="false" >
+                <f:content>
+                    <Label text="{i18n>educationType}" />
+                    <ComboBox items="{/EducationSearchHelpSet}" selectedKey="{EducationModel>/EGITIM_TIPI}">
+                        <core:Item key="{EducationType}" text="{EducationType}"/>
+                    </ComboBox>  
+                    <Label text="{i18n>school}" />
+                    <Input value="{EducationModel>/OKUL}"/>
+                    <Label text="{i18n>department}" />
+                    <Input value="{EducationModel>/BOLUM}"/>
+                    <Label text="{i18n>graduationDate}" />
+                    <DatePicker
+                    id="DP4"
+                    value="{path:'EducationModel>/MEZUNIYET_TARIHI', type:'sap.ui.model.type.Date', formatOptions: { style: 'medium', strictParsing: true}}"
+                    class="sapUiSmallMarginBottom"/>
+                </f:content>
+            </f:SimpleForm>
+        </content>
+        <buttons>
+            <Button text="{i18n>dialogCloseButtonText}" press="onCloseDialog"/>
+            <Button text="{i18n>dialogSaveButtonText}" press="onSaveEducation"/>
+        </buttons>
+   </Dialog>
+</core:FragmentDefinition>

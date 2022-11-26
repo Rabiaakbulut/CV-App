@@ -39,10 +39,17 @@
                             <ObjectIdentifier
                                 title="{CvInfoModel>LAST_UPDATE}"/>
                             <Button press="onDownloadCV" icon="sap-icon://download"></Button>   
-                            <VBox >
-                                <Button press="onOpenCV" icon="sap-icon://edit"></Button>
-                                <Button press="onDeleteCV" icon="sap-icon://delete"></Button>
-                            </VBox >
+                                <VBox >
+                                    <Button press="onOpenCV" 
+                                            icon="sap-icon://edit" 
+                                            visible="{= ${CvInfoModel>IS_CV_EXIST} === 'X'}"/>
+                                    <Button press="onDeleteCV" 
+                                            icon="sap-icon://delete"    
+                                            visible="{= ${CvInfoModel>IS_CV_EXIST} === 'X'}"/>
+                                    <Button press="onOpenCV" 
+                                            icon="sap-icon://add"   
+                                            visible="{= ${CvInfoModel>IS_CV_EXIST} === ''}"/>
+                                </VBox >
                         </cells>
                     </ColumnListItem>
                 </items>

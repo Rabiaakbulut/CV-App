@@ -1,11 +1,219 @@
 <mvc:View controllerName="cvapp.controller.Cv"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m"
-    xmlns:l="sap.ui.layout">
-	<Page>
-    <content>
-    
-		<Text text="deneme"></Text>
-    </content>
+    xmlns="sap.m" 
+    xmlns:l="sap.ui.layout" 
+    xmlns:mvc="sap.ui.core.mvc" 
+	  xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    height="100%">
+	<Page title="" 		
+	    showNavButton="true"
+		navButtonPress=".onNavBack">
+	<l:VerticalLayout class="sapUiContentPadding" width="100%">
+		<l:content>
+<!--FOTO ve INFO panel-->
+		<Panel class="sapUiDemoFlexBoxSizeAdjustments">
+			<FlexBox alignItems="Start">
+				<ImageContent
+					class="sapUiLargeMarginTop sapUiLargeMarginBottom sapUiDemoFlexBoxSizeAdjustments"
+					src="sap-icon://area-chart"
+					description="Icon"
+					press="press">
+					<layoutData>
+                    	<FlexItemData growFactor="1"/>
+    				</layoutData>
+	           </ImageContent>
+				<Panel>
+					<content>
+						<f:SimpleForm id="SimpleFormChange354"
+								editable="true"
+								layout="ResponsiveGridLayout"
+								title="{i18n>info}"
+								labelSpanXL="3"
+								labelSpanL="3"
+								labelSpanM="3"
+								labelSpanS="12"
+								adjustLabelSpan="false"
+								emptySpanXL="4"
+								emptySpanL="4"
+								emptySpanM="4"
+								emptySpanS="0"
+								columnsXL="1"
+								columnsL="1"
+								columnsM="1"
+								singleContainerFullSize="false" >
+								<f:content>
+									<Label text="{i18n>id}" />
+									<Input value="{CvInfoModel>/PERS_ID}"/>
+									<Label text="{i18n>name}" />
+									<Input value="{CvInfoModel>/NAME}"/>
+									<Label text="{i18n>phone}" />
+									<Input value="{CvInfoModel>/TEL}"/>
+									<Label text="{i18n>mail}" />
+									<Input value="{CvInfoModel>/MAIL}"/>
+								</f:content>
+							</f:SimpleForm>
+					</content>
+				    <layoutData>
+        				<FlexItemData growFactor="3"/>
+    				</layoutData>
+				</Panel>
+			</FlexBox>
+		</Panel>
+
+<!--EDUCATION panel-->
+		<Panel>
+			<content>
+			    <Table
+					id="educationTable"
+					width="auto"
+					items="{CvInfoModel>/CvInfoToEducations/results}"
+					growing="true"
+					growingScrollToLoad="true"
+					updateFinished=".onUpdateFinished">
+					 <headerToolbar>
+                    <OverflowToolbar>
+					<ToolbarSpacer/>
+					    <Button press="onAddEducation" icon="sap-icon://add"/> 
+                        <Title
+                            text="{i18n>educationTableTitle}"
+                            level="H3"/>
+                    </OverflowToolbar>
+                </headerToolbar>
+					<columns>
+						<Column>
+							<Text text="{i18n>educationType}"/>
+						</Column>
+						<Column >
+							<Text text="{i18n>school}"/>
+						</Column>
+						<Column>
+							<Text text="{i18n>department}"/>
+						</Column>
+						<Column>
+							<Text text="{i18n>graduationDate}"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<ObjectIdentifier
+									title="{CvInfoModel>EGITIM_TIPI}"/>
+								<ObjectIdentifier
+									title="{CvInfoModel>OKUL}"/>
+								<ObjectIdentifier
+									title="{CvInfoModel>BOLUM}"/>
+								<ObjectIdentifier
+									title="{CvInfoModel>MEZUNIYET_TARIHI}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</content>
+		</Panel>
+				
+<!--PROJECTS panel-->
+		<Panel>
+			<content>
+			    <Table
+					id="projectTable"
+					width="auto"
+					items="{CvInfoModel>/CvInfoToProjects/results}"
+					growing="true"
+					growingScrollToLoad="true"
+					updateFinished=".onUpdateFinished">
+					 <headerToolbar>
+                    <OverflowToolbar>
+					<ToolbarSpacer/>
+					    <Button press="onAddProject" icon="sap-icon://add"/> 
+                        <Title
+                            text="{i18n>projectTableTitle}"
+                            level="H3"/>
+                    </OverflowToolbar>
+                </headerToolbar>
+					<columns>
+						<Column>
+							<Text text="{i18n>projectId}"/>
+						</Column>
+						<Column >
+							<Text text="{i18n>projectName}"/>
+						</Column>
+						<Column>
+							<Text text="{i18n>mission}"/>
+						</Column>
+						<Column>
+							<Text text="{i18n>explanation}"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<ObjectIdentifier
+									title="{CvInfoModel>PROJE_ID}"/>
+								<ObjectIdentifier
+									title="{CvInfoModel>PROJE_AD}"/>
+								<ObjectIdentifier
+									title="{CvInfoModel>GOREV}"/>
+								<ObjectIdentifier
+									title="{CvInfoModel>ACIKLAMA}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</content>
+		</Panel>
+
+<!--CERTIFICATE panel-->
+		<Panel>
+			<content>
+			    <Table
+					id="certificateTable"
+					width="auto"
+					items="{CvInfoModel>/CvInfoToCertificates/results}"
+					growing="true"
+					growingScrollToLoad="true"
+					updateFinished=".onUpdateFinished">
+					 <headerToolbar>
+                    <OverflowToolbar>
+					<ToolbarSpacer/>
+					    <Button press="onAddProject" icon="sap-icon://add"/> 
+                        <Title
+                            text="{i18n>certificateTableTitle}"
+                            level="H3"/>
+                    </OverflowToolbar>
+                </headerToolbar>
+					<columns>
+						<Column>
+							<Text text="{i18n>certificateId}"/>
+						</Column>
+						<Column >
+							<Text text="{i18n>certificateName}"/>
+						</Column>
+						<Column>
+							<Text text="{i18n>establishment}"/>
+						</Column>
+						<Column>
+							<Text text="{i18n>validity}"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<ObjectIdentifier
+									title="{CvInfoModel>SERTIFIKA_ID}"/>
+								<ObjectIdentifier
+									title="{CvInfoModel>SERTIFIKA_AD}"/>
+								<ObjectIdentifier
+									title="{CvInfoModel>VERILEN_KURUM}"/>
+								<ObjectIdentifier
+									title="{CvInfoModel>GECERLILIK_SURESI}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</content>
+		</Panel>
+
+        </l:content>
+	</l:VerticalLayout>
 	</Page>
 </mvc:View>
