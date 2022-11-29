@@ -4,8 +4,8 @@
     xmlns:f="sap.ui.layout.form"
 	xmlns:u="sap.ui.unified">
    <Dialog
-      id="EducationDialog"
-      title ="{i18n>educationDialogTitle}">
+      id="CertificateDialog"
+      title ="{i18n>certificateDialogTitle}">
         <content>
             <f:SimpleForm id="SimpleFormDisplay354"
                 editable="false"
@@ -24,18 +24,16 @@
                 columnsM="1"
                 singleContainerFullSize="false" >
                 <f:content>
-                    <Label text="{i18n>educationType}" />
-                    <ComboBox items="{/EducationSearchHelpSet}" selectedKey="{EducationModel>/EGITIM_TIPI}">
-                        <core:Item key="{EducationType}" text="{EducationType}"/>
-                    </ComboBox>  
-                    <Label text="{i18n>school}" />
-                    <Input value="{EducationModel>/OKUL}"/>
-                    <Label text="{i18n>department}" />
-                    <Input value="{EducationModel>/BOLUM}"/>
-                    <Label text="{i18n>graduationDate}" />
+                    <Label text="{i18n>certificateId}" />
+                    <Input value="{CertificateModel>/SERTIFIKA_ID}"/>
+                    <Label text="{i18n>certificateName}" />
+                    <Input value="{CertificateModel>/SERTIFIKA_AD}"/>
+                    <Label text="{i18n>establishment}" />
+                    <Input value="{CertificateModel>/VERILEN_KURUM}"/>
+                    <Label text="{i18n>validity}" />
                     <DatePicker
                     id="DP4"
-                    value="{path:'EducationModel>/MEZUNIYET_TARIHI', type:'sap.ui.model.type.Date', formatOptions: { style: 'medium', strictParsing: true}}"
+                    value="{path:'CertificateModel>/GECERLILIK_SURESI', type:'sap.ui.model.type.Date', formatOptions: { style: 'medium', strictParsing: true}}"
                     class="sapUiSmallMarginBottom"/>
                 </f:content>
             </f:SimpleForm>

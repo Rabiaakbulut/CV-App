@@ -175,7 +175,7 @@
 					 <headerToolbar>
                     <OverflowToolbar>
 					<ToolbarSpacer/>
-					    <Button press="onAddProject" icon="sap-icon://add"/> 
+					    <Button press="onAddCertificate" icon="sap-icon://add"/> 
                         <Title
                             text="{i18n>certificateTableTitle}"
                             level="H3"/>

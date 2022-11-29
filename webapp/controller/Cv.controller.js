@@ -52,34 +52,66 @@ sap.ui.define([
 			}
 		},
 		onAddEducation : function () {
+			this.onAdd("Education");
+		},
+		onAddProject: function(){
+			this.onAdd("Project");
+		},
+		onAddCertificate: function(){
+			this.onAdd("Certificate");
+		},
+		onAdd: function (sRecordModel){
+			var sModel = sRecordModel.concat("Model");
 			var iEmployeeId = this.getView().getModel("CvInfoModel").getData().PERS_ID;
 
-			var sEducation ={
+			var sData ={
 				PERS_ID : iEmployeeId
 			};
-			var oModel = new JSONModel(sEducation);
-            this.getView().setModel(oModel,"EducationModel");
-			this._getEducationDialog().open();
+			var oModel = new JSONModel(sData);
+            this.getView().setModel(oModel,sModel);
+			this._getFragmentDialog(sRecordModel).open();
 		},
-		onCloseDialog : function () {
-			this._getEducationDialog().close();
+		onCloseDialog : function (oEvent) { //dialog id'ye erişip diyalogları dinamik şekilde kapatma
+			var sDialogName = oEvent.oSource.oParent.sId; //butonun bulunduğu fragment diyaloğun id'si (EducationDialog)
+			sDialogName =sDialogName.split(/(?=[A-Z])/)[0]; //büyük harfe göre parçala, ilk texti al (Education)
+			this._getFragmentDialog(sDialogName).close();
+
+			//fragmenti tamamen ortadan kaldır
+			//bir fragment çağırma metodunu birden fazla fragmentte kullandığımız için
+			//addDependent fonskiyonu hata vermesin diye
+			this._getFragmentDialog(sDialogName).destroy(true); 
 		},
-        _getEducationDialog: function(){
-            this.oEducationDialog = sap.ui.getCore().byId("educationDialog");			
-            if (!this.oEducationDialog) {				
-                this.oEducationDialog = sap.ui.xmlfragment("cvapp.view.Education", this); 
-                this.getView().addDependent(this.oEducationDialog);
-                jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this.oEducationDialog);	
+        _getFragmentDialog: function(sRecordModel){
+			//dynamic değişkenler
+			var sDialogName = sRecordModel.concat("Dialog");        //EducationDialog...
+			var sFragmentName = "cvapp.view.".concat(sRecordModel)  //cvapp.view.Education...
+
+            this.oFragmentDialog = sap.ui.getCore().byId(sDialogName);			
+            if (!this.oFragmentDialog) {				
+                this.oFragmentDialog = sap.ui.xmlfragment(sFragmentName, this); 
+                this.getView().addDependent(this.oFragmentDialog);
+                jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this.oFragmentDialog);	
             }			
-            return this.oEducationDialog;	
+            return this.oFragmentDialog;	
         },
-        onSaveEducation: function(){
+        onSaveData: function(oEvent){
+			//Fragmentte kullanılan model adı (EducationModel ...)
+			var sDialogName = oEvent.oSource.oParent.sId; //butonun bulunduğu fragment diyaloğun id'si (EducationDialog)
+			sDialogName =sDialogName.split(/(?=[A-Z])/)[0]; //büyük harfe göre parçala, ilk texti al (Education)
+			var sModelName = sDialogName.concat("Model");
+
+			//SAP'de kullanılan entity set adı (/EducationSet ...)
+			var sEntitySetName = "/";
+			sEntitySetName = sEntitySetName.concat(sDialogName);
+			sEntitySetName = sEntitySetName.concat("Set");
+
+			var sModelData = this.getView().getModel(sModelName).getData();
 			var that = this;
-			var sEducationDetail = this.getView().getModel("EducationModel").getData();
-			this.getView().getModel().create("/EducationSet",sEducationDetail,{
+			this.getView().getModel().create(sEntitySetName,sModelData,{
                 success: function(oData){
 					that.onGetData();
-                    that._getEducationDialog().close();
+                    that._getFragmentDialog(sDialogName).close();
+					that._getFragmentDialog(sDialogName).destroy(true); 
                 },
                 error: function(){
                 }

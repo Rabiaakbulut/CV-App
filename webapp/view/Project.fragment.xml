@@ -4,8 +4,8 @@
     xmlns:f="sap.ui.layout.form"
 	xmlns:u="sap.ui.unified">
    <Dialog
-      id="EducationDialog"
-      title ="{i18n>educationDialogTitle}">
+      id="ProjectDialog"
+      title ="{i18n>projectDialogTitle}">
         <content>
             <f:SimpleForm id="SimpleFormDisplay354"
                 editable="false"
@@ -24,19 +24,19 @@
                 columnsM="1"
                 singleContainerFullSize="false" >
                 <f:content>
-                    <Label text="{i18n>educationType}" />
-                    <ComboBox items="{/EducationSearchHelpSet}" selectedKey="{EducationModel>/EGITIM_TIPI}">
-                        <core:Item key="{EducationType}" text="{EducationType}"/>
-                    </ComboBox>  
-                    <Label text="{i18n>school}" />
-                    <Input value="{EducationModel>/OKUL}"/>
-                    <Label text="{i18n>department}" />
-                    <Input value="{EducationModel>/BOLUM}"/>
-                    <Label text="{i18n>graduationDate}" />
-                    <DatePicker
-                    id="DP4"
-                    value="{path:'EducationModel>/MEZUNIYET_TARIHI', type:'sap.ui.model.type.Date', formatOptions: { style: 'medium', strictParsing: true}}"
-                    class="sapUiSmallMarginBottom"/>
+                    <Label text="{i18n>projectId}" />
+                    <Input value="{ProjectModel>/PROJE_ID}"/>
+                    <Label text="{i18n>projectName}" />
+                    <Input value="{ProjectModel>/PROJE_AD}"/>
+                    <Label text="{i18n>mission}" />
+                    <Input value="{ProjectModel>/GOREV}"/>
+                    <Label text="{i18n>explanation}" />
+                    <TextArea id="textAreaWithBinding2" 
+                            value="{ProjectModel>/ACIKLAMA}"
+                            maxLength="100" 
+                            width="100%" 
+                            valueState="Information"
+			                valueStateText="max 100 char"/>
                 </f:content>
             </f:SimpleForm>
         </content>
