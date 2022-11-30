@@ -73,7 +73,7 @@
 					 <headerToolbar>
                     <OverflowToolbar>
 					<ToolbarSpacer/>
-					    <Button press="onAddEducation" icon="sap-icon://add"/> 
+					    <Button press=".onAdd('Education')" icon="sap-icon://add" /> 
                         <Title
                             text="{i18n>educationTableTitle}"
                             level="H3"/>
@@ -92,6 +92,9 @@
 						<Column>
 							<Text text="{i18n>graduationDate}"/>
 						</Column>
+						<Column>
+							<Text text="{i18n>action}"/>
+						</Column>
 					</columns>
 					<items>
 						<ColumnListItem>
@@ -104,6 +107,10 @@
 									title="{CvInfoModel>BOLUM}"/>
 								<ObjectIdentifier
 									title="{CvInfoModel>MEZUNIYET_TARIHI}"/>
+								<VBox >
+									<Button press=".onEdit($event,'Education')"   icon="sap-icon://edit"/> 
+									<Button press=".onDelete($event,'Education')" icon="sap-icon://delete"/> 
+                                </VBox >
 							</cells>
 						</ColumnListItem>
 					</items>
@@ -124,7 +131,7 @@
 					 <headerToolbar>
                     <OverflowToolbar>
 					<ToolbarSpacer/>
-					    <Button press="onAddProject" icon="sap-icon://add"/> 
+					    <Button press=".onAdd('Project')" icon="sap-icon://add"/> 
                         <Title
                             text="{i18n>projectTableTitle}"
                             level="H3"/>
@@ -143,6 +150,9 @@
 						<Column>
 							<Text text="{i18n>explanation}"/>
 						</Column>
+						<Column>
+							<Text text="{i18n>action}"/>
+						</Column>
 					</columns>
 					<items>
 						<ColumnListItem>
@@ -155,6 +165,10 @@
 									title="{CvInfoModel>GOREV}"/>
 								<ObjectIdentifier
 									title="{CvInfoModel>ACIKLAMA}"/>
+								<VBox >
+									<Button press=".onEdit($event,'Project')"   icon="sap-icon://edit"/> 
+									<Button press=".onDelete($event,'Project')" icon="sap-icon://delete"/> 
+                                </VBox >
 							</cells>
 						</ColumnListItem>
 					</items>
@@ -175,7 +189,7 @@
 					 <headerToolbar>
                     <OverflowToolbar>
 					<ToolbarSpacer/>
-					    <Button press="onAddCertificate" icon="sap-icon://add"/> 
+					    <Button press=".onAdd('Certificate')" icon="sap-icon://add"/> 
                         <Title
                             text="{i18n>certificateTableTitle}"
                             level="H3"/>
@@ -194,6 +208,9 @@
 						<Column>
 							<Text text="{i18n>validity}"/>
 						</Column>
+						<Column>
+							<Text text="{i18n>action}"/>
+						</Column>
 					</columns>
 					<items>
 						<ColumnListItem>
@@ -206,6 +223,10 @@
 									title="{CvInfoModel>VERILEN_KURUM}"/>
 								<ObjectIdentifier
 									title="{CvInfoModel>GECERLILIK_SURESI}"/>
+								<VBox >
+									<Button press=".onEdit($event,'Certificate')"   icon="sap-icon://edit"/> 
+									<Button press=".onDelete($event,'Certificate')" icon="sap-icon://delete"/> 
+                                </VBox >
 							</cells>
 						</ColumnListItem>
 					</items>
