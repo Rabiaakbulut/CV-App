@@ -2,7 +2,7 @@
     xmlns="sap.m" 
     xmlns:l="sap.ui.layout" 
     xmlns:mvc="sap.ui.core.mvc" 
-	  xmlns:f="sap.ui.layout.form"
+	xmlns:f="sap.ui.layout.form"
     xmlns:core="sap.ui.core"
     height="100%">
 	<Page title="" 		
@@ -43,13 +43,13 @@
 								singleContainerFullSize="false" >
 								<f:content>
 									<Label text="{i18n>id}" />
-									<Input value="{CvInfoModel>/PERS_ID}"/>
+									<Input editable="false" value="{CvInfoModel>/PERS_ID}"/>
 									<Label text="{i18n>name}" />
-									<Input value="{CvInfoModel>/NAME}"/>
+									<Input editable="false" value="{CvInfoModel>/NAME}"/>
 									<Label text="{i18n>phone}" />
-									<Input value="{CvInfoModel>/TEL}"/>
+									<Input editable="false" value="{CvInfoModel>/TEL}"/>
 									<Label text="{i18n>mail}" />
-									<Input value="{CvInfoModel>/MAIL}"/>
+									<Input editable="false" value="{CvInfoModel>/MAIL}"/>
 								</f:content>
 							</f:SimpleForm>
 					</content>
@@ -105,12 +105,17 @@
 									title="{CvInfoModel>OKUL}"/>
 								<ObjectIdentifier
 									title="{CvInfoModel>BOLUM}"/>
-								<ObjectIdentifier
-									title="{CvInfoModel>MEZUNIYET_TARIHI}"/>
-								<VBox >
-									<Button press=".onEdit($event,'Education')"   icon="sap-icon://edit"/> 
-									<Button press=".onDelete($event,'Education')" icon="sap-icon://delete"/> 
-                                </VBox >
+								<ObjectIdentifier title="{
+                                path: 'CvInfoModel>MEZUNIYET_TARIHI',
+									type: 'sap.ui.model.type.Date',
+									formatOptions: {
+									pattern: 'dd.MM.YYYY'
+									}
+								}" />
+								<FlexBox>
+									<Button press=".onEdit($event,'Education')"   icon="sap-icon://edit" class="sapUiTinyMarginEnd"/> 
+									<Button press=".onApproveDeletePress($event,'Education')" icon="sap-icon://delete"/> 
+                                </FlexBox >
 							</cells>
 						</ColumnListItem>
 					</items>
@@ -165,10 +170,10 @@
 									title="{CvInfoModel>GOREV}"/>
 								<ObjectIdentifier
 									title="{CvInfoModel>ACIKLAMA}"/>
-								<VBox >
-									<Button press=".onEdit($event,'Project')"   icon="sap-icon://edit"/> 
-									<Button press=".onDelete($event,'Project')" icon="sap-icon://delete"/> 
-                                </VBox >
+								<FlexBox>
+									<Button press=".onEdit($event,'Project')"   icon="sap-icon://edit" class="sapUiTinyMarginEnd"/> 
+									<Button press=".onApproveDeletePress($event,'Project')" icon="sap-icon://delete"/> 
+                                </FlexBox >
 							</cells>
 						</ColumnListItem>
 					</items>
@@ -221,12 +226,17 @@
 									title="{CvInfoModel>SERTIFIKA_AD}"/>
 								<ObjectIdentifier
 									title="{CvInfoModel>VERILEN_KURUM}"/>
-								<ObjectIdentifier
-									title="{CvInfoModel>GECERLILIK_SURESI}"/>
-								<VBox >
-									<Button press=".onEdit($event,'Certificate')"   icon="sap-icon://edit"/> 
-									<Button press=".onDelete($event,'Certificate')" icon="sap-icon://delete"/> 
-                                </VBox >
+								<ObjectIdentifier title="{
+									path: 'CvInfoModel>GECERLILIK_SURESI',
+									type: 'sap.ui.model.type.Date',
+									formatOptions: {
+									pattern: 'dd.MM.YYYY'
+									}
+								}" />
+								<FlexBox >
+									<Button press=".onEdit($event,'Certificate')"   icon="sap-icon://edit" class="sapUiTinyMarginEnd"/> 
+									<Button press=".onApproveDeletePress($event,'Certificate')" icon="sap-icon://delete"/> 
+                                </FlexBox >
 							</cells>
 						</ColumnListItem>
 					</items>

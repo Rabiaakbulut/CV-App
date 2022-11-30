@@ -25,31 +25,37 @@
                         <Text text="{i18n>lastUpdate}"/>
                     </Column>
                     <Column>
-                        <Text text="{i18n>download}"/>
-                    </Column>
-                    <Column>
                         <Text text="{i18n>actions}"/>
                     </Column>
                 </columns>
                 <items>
-                    <ColumnListItem type="Navigation" press=".onPress">
+                    <ColumnListItem> <!-- type="Navigation" press=".onPress"-->
                         <cells>
                             <ObjectIdentifier
                                 title="{CvInfoModel>NAME}"/>
-                            <ObjectIdentifier
-                                title="{CvInfoModel>LAST_UPDATE}"/>
-                            <Button press="onDownloadCV" icon="sap-icon://download"></Button>   
-                                <VBox >
-                                    <Button press="onOpenCV" 
+				            <ObjectIdentifier title="{
+                                path: 'CvInfoModel>LAST_UPDATE',
+                                type: 'sap.ui.model.type.Date',
+                                formatOptions: {
+                                pattern: 'dd.MM.YYYY'
+                                }
+                            }" />
+                                <HBox>
+                                    <Button press="onPress" 
                                             icon="sap-icon://edit" 
-                                            visible="{= ${CvInfoModel>IS_CV_EXIST} === 'X'}"/>
-                                    <Button press="onDeleteCV" 
+                                            visible="{= ${CvInfoModel>IS_CV_EXIST} === 'X'}"
+                                            class="sapUiTinyMarginEnd"/>
+                                    <Button press="onDownloadCV" 
+                                            icon="sap-icon://download" 
+                                            visible="{= ${CvInfoModel>IS_CV_EXIST} === 'X'}"
+                                            class="sapUiTinyMarginEnd"/>
+                                    <Button press="onApproveDeleteCV($event)" 
                                             icon="sap-icon://delete"    
                                             visible="{= ${CvInfoModel>IS_CV_EXIST} === 'X'}"/>
-                                    <Button press="onOpenCV" 
+                                    <Button press="onPress" 
                                             icon="sap-icon://add"   
                                             visible="{= ${CvInfoModel>IS_CV_EXIST} === ''}"/>
-                                </VBox >
+                                </HBox >
                         </cells>
                     </ColumnListItem>
                 </items>

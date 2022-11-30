@@ -2,12 +2,19 @@ sap.ui.define([
 	"sap/ui/core/mvc/Controller",
     "sap/ui/model/json/JSONModel",
 	"sap/ui/core/routing/History",
-	"sap/ui/core/Fragment"
-], function (Controller,JSONModel,History,Fragment) {
+	"sap/ui/core/Fragment",
+	"sap/ui/core/Core",
+	"sap/ui/layout/HorizontalLayout",
+	"sap/ui/layout/VerticalLayout",
+	"sap/m/Dialog",
+	"sap/m/Button",
+	"sap/m/Label",
+	"sap/m/library",
+	"sap/m/MessageToast",
+	"sap/m/Text",
+	"sap/m/TextArea"
+], function (Controller,JSONModel,History,Fragment, Core, HorizontalLayout, VerticalLayout, Dialog, Button, Label, mobileLibrary, MessageToast, Text, TextArea) {
 	"use strict";
-
-	var employeeId;
-
 	return Controller.extend("cvapp.controller.Cv", {
 		onInit: function () {
 			var oModel = new JSONModel();
@@ -17,18 +24,19 @@ sap.ui.define([
 			oRouter.getRoute("Cv").attachPatternMatched(this._onObjectMatched, this);
 		},
 		_onObjectMatched: function (oEvent) {
-			employeeId = oEvent.getParameter("arguments").EmployeeId;
+			this.employeeId = oEvent.getParameter("arguments").EmployeeId;
 			this.getView().bindElement({
 				path: "/" + window.decodeURIComponent(oEvent.getParameter("arguments").EmployeeId),
 				model: "CvInfoModel"
 			});
+			this.onGetData();
 		},
 		onAfterRendering: function(){
 			this.onGetData();
 		},
 		onGetData: function(){
 			var that = this;
-			this.getView().getModel().read("/CvInfoSet('" + employeeId + "')",{
+			this.getView().getModel().read("/CvInfoSet('" + this.employeeId + "')",{
                 async:true,
                 urlParameters:{
                     "$expand": "CvInfoToProjects,CvInfoToEducations,CvInfoToCertificates"
@@ -61,10 +69,9 @@ sap.ui.define([
             this._getFragmentDialog(sRecordModel).open();
 			this.bEdit = true;
 		},
-		onDelete(oEvent, sData){ //FUNCTION IMPORT - DELETE
+		onDelete(sData, sModel){ //FUNCTION IMPORT - DELETE
             var that = this;
-            var sModel = oEvent.getSource().getBindingContext("CvInfoModel").getProperty();
-
+			
 			if(sData=="Education"){
 				var sParams = {
 					PERS_ID: sModel.PERS_ID,
@@ -175,6 +182,31 @@ sap.ui.define([
 				var oRouter = this.getOwnerComponent().getRouter();
 				oRouter.navTo("Home", {}, true);
 			}
+		},	
+		onApproveDeletePress: function (oEvent,sData) {
+			var that = this;
+            var sModel = oEvent.getSource().getBindingContext("CvInfoModel").getProperty();
+			if (!this.oApproveDialog) {
+				this.oApproveDialog = new Dialog({
+					type: mobileLibrary.DialogType.Message,
+					title: "Dikkat",
+					content: new Text({ text: "Silme işlemini onaylıyor musunuz?" }),
+					beginButton: new Button({
+						text: "Onayla",
+						press: function () {
+							that.onDelete(sData, sModel);
+							this.oApproveDialog.close();
+						}.bind(this)
+					}),
+					endButton: new Button({
+						text: "İptal",
+						press: function () {
+							this.oApproveDialog.close();
+						}.bind(this)
+					})
+				});
+			}
+			this.oApproveDialog.open();
 		}
 	});
 });
