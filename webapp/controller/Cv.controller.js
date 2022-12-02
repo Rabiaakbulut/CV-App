@@ -148,6 +148,38 @@ sap.ui.define([
             })
 			}
         },
+		addImage: function(){
+			var sId = this.getView().getModel("CvInfoModel").getData().PERS_ID;
+
+            var oModel= this.getView().getModel();
+            var oFileUploader = this.getView().byId("fileUploader");
+            if(oFileUploader.getValue() === ""){
+                MessageToast.show("please choose any file");
+            }
+            //güvenlik için
+            oFileUploader.addHeaderParameter(new sap.ui.unified.FileUploaderParameter({
+                name: "x-csrf-token",
+                value: oModel.getSecurityToken()
+            }));
+            //üst üste tetiklenme için
+            oFileUploader.addHeaderParameter(new sap.ui.unified.FileUploaderParameter({
+                name: "X-Requested-With",
+                value: "X"
+            }));
+            //kullanacağımız verileri göndermek için
+            oFileUploader.addHeaderParameter(new sap.ui.unified.FileUploaderParameter({
+                name: "content-disposition",
+                value: encodeURIComponent(oFileUploader.getValue() ) + "#" + sId
+            }));
+
+            oFileUploader.upload();
+            return;
+		},
+		handleUploadComplete: function (oEvent) {
+			//RESİM GÜNCELLENMİYOR !!!!
+			// var oImage = this.getView().byId("employeeImg");
+			// oImage.setSrc(oImage.getSrc());
+		},
         _getFragmentDialog: function(sRecordModel){
 			//dynamic değişkenler
 			var sDialogName = sRecordModel.concat("Dialog");        //EducationDialog...
@@ -196,12 +228,16 @@ sap.ui.define([
 						press: function () {
 							that.onDelete(sData, sModel);
 							this.oApproveDialog.close();
+							this.oApproveDialog.destroy(true); 
+							this.oApproveDialog = undefined;
 						}.bind(this)
 					}),
 					endButton: new Button({
 						text: "İptal",
 						press: function () {
 							this.oApproveDialog.close();
+							this.oApproveDialog.destroy(true); 
+							this.oApproveDialog = undefined;
 						}.bind(this)
 					})
 				});
