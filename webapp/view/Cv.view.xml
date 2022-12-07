@@ -11,25 +11,24 @@
 		navButtonPress=".onNavBack">
 	<l:VerticalLayout class="sapUiContentPadding" width="100%">
 		<l:content>
-			<Button text="deneme" press="addImage"/>
-			<u:FileUploader
-					id="fileUploader"
-					useMultipart="false"
-					sendXHR="true"
-					name="myFileUpload"
-					uploadUrl="/sap/opu/odata/sap/ZCV_APP_SRV/ImageSet"
-					tooltip="Upload your file to the local server"
-					uploadComplete="handleUploadComplete"/>
+		<FlexBox alignItems="Start" justifyContent="End">
+			<Button text="{i18n>save}" press="onCreateDeepEntity"/>
+		</FlexBox>
+			
 <!--FOTO ve INFO panel-->
 		<Panel class="sapUiDemoFlexBoxSizeAdjustments">
-			<FlexBox alignItems="Start">
-				<Image id="employeeImg" src="/sap/opu/odata/sap/ZCV_APP_SRV/ImageSet(DocId='{CvInfoModel>/PERS_ID}')/$value" height="20rem" width="auto"/>
+			<FlexBox alignItems="Start">				
+				<VBox >
+					<Image press=".onAdd('Image')" 
+					id="employeeImg" 
+					src="/sap/opu/odata/sap/ZCV_APP_SRV/ImageSet(DocId='{CvInfoModel>/PERS_ID}')/$value" 
+					height="15rem" width="auto"/>
 					<layoutData>
                     	<FlexItemData growFactor="1"/>
     				</layoutData>
-				<Panel>
-					<content>
-						<f:SimpleForm id="SimpleFormChange354"
+				</VBox>
+				<VBox>
+						<f:SimpleForm id="SimpleForm1"
 								editable="true"
 								layout="ResponsiveGridLayout"
 								title="{i18n>info}"
@@ -50,16 +49,113 @@
 									<Label text="{i18n>id}" />
 									<Input editable="false" value="{CvInfoModel>/PERS_ID}"/>
 									<Label text="{i18n>name}" />
-									<Input editable="false" value="{CvInfoModel>/NAME}"/>
+									<Input editable="false" value="{CvInfoModel>/AD}"/>
 									<Label text="{i18n>phone}" />
-									<Input editable="false" value="{CvInfoModel>/TEL}"/>
+									<Input editable="false" value="{CvInfoModel>/TELEFON}"/>
 									<Label text="{i18n>mail}" />
 									<Input editable="false" value="{CvInfoModel>/MAIL}"/>
+								</f:content>
+							</f:SimpleForm>					
+				    <layoutData>
+        				<FlexItemData growFactor="3"/>
+    				</layoutData>
+				</VBox>
+			</FlexBox>
+		</Panel>
+
+<!--INFO2 panel-->
+		<Panel class="sapUiDemoFlexBoxSizeAdjustments">
+			<FlexBox alignItems="Start">
+				<Panel>
+					<content>
+						<f:SimpleForm id="SimpleForm2"
+								editable="true"
+								layout="ResponsiveGridLayout"
+								labelSpanXL="3"
+								labelSpanL="3"
+								labelSpanM="3"
+								labelSpanS="12"
+								adjustLabelSpan="false"
+								emptySpanXL="4"
+								emptySpanL="4"
+								emptySpanM="4"
+								emptySpanS="0"
+								columnsXL="1"
+								columnsL="1"
+								columnsM="1"
+								singleContainerFullSize="false" >
+								<f:content>
+									<Label text="{i18n>education}" />
+									<Input value="{CvInfoModel>/EGITIM}"/>
+									<Label text="{i18n>birthPlaceTime}" />
+									<Input value="{CvInfoModel>/DOGUM_YERI}"/>
+									<DatePicker
+									id="DP4"
+									value="{path:'CvInfoModel>/DOGUM_TARIHI', type:'sap.ui.model.type.Date', formatOptions: { style: 'medium', strictParsing: true}}"
+									class="sapUiSmallMarginBottom"/>
+									<Label text="{i18n>maritalStatus}" />
+									<ComboBox selectedKey="{CvInfoModel>/MEDENI_DURUM}">
+										<items>
+											<core:Item text="Evli"  key="Evli"/>
+											<core:Item text="Bekar" key="Bekar"/>
+										</items>
+									</ComboBox>
+									<Label text="{i18n>militaryService}" />
+									<ComboBox selectedKey="{CvInfoModel>/ASKERLIK}">
+										<items>
+											<core:Item text="Yapıldı"   key="Yapıldı"/>
+											<core:Item text="Yapılmadı" key="Yapılmadı"/>
+										</items>
+									</ComboBox>
+									<Label text="{i18n>drivingLicense}" />
+									<Input value="{CvInfoModel>/EHLIYET}"/>
+									<Label text="{i18n>nationality}" />
+									<Input value="{CvInfoModel>/UYRUK}"/>
+									<Label text="{i18n>language}" />
+									<Input value="{CvInfoModel>/LISAN}"/>
+									<Label text="{i18n>city}" />
+									<Input value="{CvInfoModel>/SEHIR}"/>
 								</f:content>
 							</f:SimpleForm>
 					</content>
 				    <layoutData>
-        				<FlexItemData growFactor="3"/>
+        				<FlexItemData growFactor="2"/>
+    				</layoutData>
+				</Panel>
+				<Panel>
+					<content>
+						<f:SimpleForm id="SimpleForm3"
+								editable="true"
+								layout="ResponsiveGridLayout"
+								labelSpanXL="3"
+								labelSpanL="3"
+								labelSpanM="3"
+								labelSpanS="12"
+								adjustLabelSpan="false"
+								emptySpanXL="4"
+								emptySpanL="4"
+								emptySpanM="4"
+								emptySpanS="0"
+								columnsXL="1"
+								columnsL="1"
+								columnsM="1"
+								singleContainerFullSize="false" >
+								<f:content>
+								    <Label text="{i18n>employeeTitle}" />
+									<Input value="{CvInfoModel>/UNVAN}"/>
+									<Label text="{i18n>businessAddress}" />
+									<Input value="{CvInfoModel>/IS_ADRESI}"/>
+									<Label text="{i18n>summary}" />
+									<TextArea id="textAreaWithBinding2" 
+											value="{CvInfoModel>/OZET}"
+											maxLength="600" 
+											width="100%" 
+											rows="5"/>
+								</f:content>
+							</f:SimpleForm>
+					</content>
+				    <layoutData>
+        				<FlexItemData growFactor="2"/>
     				</layoutData>
 				</Panel>
 			</FlexBox>
@@ -97,8 +193,8 @@
 						<Column>
 							<Text text="{i18n>graduationDate}"/>
 						</Column>
-						<Column>
-							<Text text="{i18n>action}"/>
+						<Column hAlign="End" minScreenWidth="Small">
+							<Text text=""/>
 						</Column>
 					</columns>
 					<items>
@@ -117,7 +213,7 @@
 									pattern: 'dd.MM.YYYY'
 									}
 								}" />
-								<FlexBox>
+								<FlexBox justifyContent="End">
 									<Button press=".onEdit($event,'Education')"   icon="sap-icon://edit" class="sapUiTinyMarginEnd"/> 
 									<Button press=".onApproveDeletePress($event,'Education')" icon="sap-icon://delete"/> 
                                 </FlexBox >
@@ -148,36 +244,138 @@
                     </OverflowToolbar>
                 </headerToolbar>
 					<columns>
-						<Column>
-							<Text text="{i18n>projectId}"/>
-						</Column>
 						<Column >
 							<Text text="{i18n>projectName}"/>
+						</Column>
+						<Column>
+							<Text text="{i18n>customer}"/>
+						</Column>
+						<Column>
+							<Text text="{i18n>sector}"/>
 						</Column>
 						<Column>
 							<Text text="{i18n>mission}"/>
 						</Column>
 						<Column>
-							<Text text="{i18n>explanation}"/>
+							<Text text="{i18n>responsibility}"/>
 						</Column>
 						<Column>
-							<Text text="{i18n>action}"/>
+							<Text text="{i18n>duration}"/>
+						</Column>
+						<Column hAlign="End" minScreenWidth="Small">
+							<Text text=""/>
 						</Column>
 					</columns>
 					<items>
 						<ColumnListItem>
 							<cells>
 								<ObjectIdentifier
-									title="{CvInfoModel>PROJE_ID}"/>
-								<ObjectIdentifier
 									title="{CvInfoModel>PROJE_AD}"/>
+								<ObjectIdentifier
+									title="{CvInfoModel>MUSTERI}"/>
+								<ObjectIdentifier
+									title="{CvInfoModel>SEKTOR}"/>
 								<ObjectIdentifier
 									title="{CvInfoModel>GOREV}"/>
 								<ObjectIdentifier
-									title="{CvInfoModel>ACIKLAMA}"/>
-								<FlexBox>
+									title="{CvInfoModel>SORUMLULUK}"/>
+								<VBox >
+									<ObjectIdentifier title="{
+										path: 'CvInfoModel>PROJE_BASLANGIC',
+										type: 'sap.ui.model.type.Date',
+										formatOptions: {
+										pattern: 'dd.MM.YYYY'
+										}
+									}" />
+									<ObjectIdentifier title="{
+										path: 'CvInfoModel>PROJE_BITIS',
+										type: 'sap.ui.model.type.Date',
+										formatOptions: {
+										pattern: 'dd.MM.YYYY'
+										}
+									}" />
+								</VBox>
+								<FlexBox justifyContent="End">
 									<Button press=".onEdit($event,'Project')"   icon="sap-icon://edit" class="sapUiTinyMarginEnd"/> 
 									<Button press=".onApproveDeletePress($event,'Project')" icon="sap-icon://delete"/> 
+                                </FlexBox >
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</content>
+		</Panel>
+				
+<!--EXPERIENCES panel-->
+		<Panel>
+			<content>
+			    <Table
+					id="experienceTable"
+					width="auto"
+					items="{CvInfoModel>/CvInfoToExperiences/results}"
+					growing="true"
+					growingScrollToLoad="true"
+					updateFinished=".onUpdateFinished">
+					 <headerToolbar>
+                    <OverflowToolbar>
+					<ToolbarSpacer/>
+					    <Button press=".onAdd('Experience')" icon="sap-icon://add"/> 
+                        <Title
+                            text="{i18n>experienceTableTitle}"
+                            level="H3"/>
+                    </OverflowToolbar>
+                </headerToolbar>
+					<columns>
+						<Column >
+							<Text text="{i18n>company}"/>
+						</Column>
+						<Column>
+							<Text text="{i18n>employeeTitle}"/>
+						</Column>
+						<Column>
+							<Text text="{i18n>workType}"/>
+						</Column>
+						<Column>
+							<Text text="{i18n>beginDate}"/>
+						</Column>
+						<Column>
+							<Text text="{i18n>endDate}"/>
+						</Column>
+						<Column hAlign="End" minScreenWidth="Small">
+							<Text text=""/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<ObjectIdentifier
+									title="{CvInfoModel>SIRKET}"/>
+								<ObjectIdentifier
+									title="{CvInfoModel>UNVAN}"/>
+								<ObjectIdentifier
+									title="{CvInfoModel>ISTIHDAM_TURU}"/>
+								<ObjectIdentifier title="{
+										path: 'CvInfoModel>BASLANGIC',
+										type: 'sap.ui.model.type.Date',
+										formatOptions: {
+										pattern: 'dd.MM.YYYY'
+										}
+									}" />
+								<FlexBox>								
+									<ObjectIdentifier title="{
+										path: 'CvInfoModel>BITIS',
+										type: 'sap.ui.model.type.Date',
+										formatOptions: {
+										pattern: 'dd.MM.YYYY'
+										}
+									}" 
+										visible="{= ${CvInfoModel>DEVAM_DURUMU} !== true}"/>
+                                    <ObjectIdentifier title="Devam" 
+										visible="{= ${CvInfoModel>DEVAM_DURUMU} === true}"/>
+								</FlexBox>									
+								<FlexBox justifyContent="End">
+									<Button press=".onEdit($event,'Experience')"   icon="sap-icon://edit" class="sapUiTinyMarginEnd"/> 
+									<Button press=".onApproveDeletePress($event,'Experience')" icon="sap-icon://delete"/> 
                                 </FlexBox >
 							</cells>
 						</ColumnListItem>
@@ -206,9 +404,6 @@
                     </OverflowToolbar>
                 </headerToolbar>
 					<columns>
-						<Column>
-							<Text text="{i18n>certificateId}"/>
-						</Column>
 						<Column >
 							<Text text="{i18n>certificateName}"/>
 						</Column>
@@ -218,15 +413,13 @@
 						<Column>
 							<Text text="{i18n>validity}"/>
 						</Column>
-						<Column>
-							<Text text="{i18n>action}"/>
+						<Column hAlign="End" minScreenWidth="Small">
+							<Text text=""/>
 						</Column>
 					</columns>
 					<items>
 						<ColumnListItem>
 							<cells>
-								<ObjectIdentifier
-									title="{CvInfoModel>SERTIFIKA_ID}"/>
 								<ObjectIdentifier
 									title="{CvInfoModel>SERTIFIKA_AD}"/>
 								<ObjectIdentifier
@@ -238,9 +431,52 @@
 									pattern: 'dd.MM.YYYY'
 									}
 								}" />
-								<FlexBox >
+								<FlexBox justifyContent="End">
 									<Button press=".onEdit($event,'Certificate')"   icon="sap-icon://edit" class="sapUiTinyMarginEnd"/> 
 									<Button press=".onApproveDeletePress($event,'Certificate')" icon="sap-icon://delete"/> 
+                                </FlexBox >
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</content>
+		</Panel>
+
+<!--SKILL panel-->
+		<Panel>
+			<content>
+			    <Table
+					id="skillTable"
+					width="auto"
+					items="{CvInfoModel>/CvInfoToSkills/results}"
+					growing="true"
+					growingScrollToLoad="true"
+					updateFinished=".onUpdateFinished">
+					 <headerToolbar>
+                    <OverflowToolbar>
+					<ToolbarSpacer/>
+					    <Button press=".onAdd('Skill')" icon="sap-icon://add"/> 
+                        <Title
+                            text="{i18n>skillTableTitle}"
+                            level="H3"/>
+                    </OverflowToolbar>
+                </headerToolbar>
+					<columns>
+						<Column >
+							<Text text="{i18n>skill}"/>
+						</Column>
+						<Column hAlign="End" minScreenWidth="Small">
+							<Text text=""/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<ObjectIdentifier
+									title="{CvInfoModel>YETENEK}"/>
+								<FlexBox justifyContent="End">
+									<Button press=".onEdit($event,'Skill')"   icon="sap-icon://edit" class="sapUiTinyMarginEnd"/> 
+									<Button press=".onApproveDeletePress($event,'Skill')" icon="sap-icon://delete"/> 
                                 </FlexBox >
 							</cells>
 						</ColumnListItem>

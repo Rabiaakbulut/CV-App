@@ -4,10 +4,10 @@
     xmlns:f="sap.ui.layout.form"
 	xmlns:u="sap.ui.unified">
    <Dialog
-      id="CertificateDialog"
-      title ="{i18n>certificateDialogTitle}">
+      id="SkillDialog"
+      title ="{i18n>skillDialogTitle}">
         <content>
-            <f:SimpleForm id="SimpleFormCertificate"
+            <f:SimpleForm id="SimpleFormSkill"
                 editable="false"
                 layout="ResponsiveGridLayout"
                 labelSpanXL="3"
@@ -24,17 +24,8 @@
                 columnsM="1"
                 singleContainerFullSize="false" >
                 <f:content>
-                    <Label text="{i18n>certificateName}" />
-                    <Input value="{CertificateModel>/SERTIFIKA_AD}" 
-                        required="true" 
-                        change="handleInputChange"/>
-                    <Label text="{i18n>establishment}" />
-                    <Input value="{CertificateModel>/VERILEN_KURUM}"/>
-                    <Label text="{i18n>validity}" />
-                    <DatePicker
-                    id="DP4"
-                    value="{path:'CertificateModel>/GECERLILIK_SURESI', type:'sap.ui.model.type.Date', formatOptions: { style: 'medium', strictParsing: true}}"
-                    class="sapUiSmallMarginBottom"/>
+                    <Label text="{i18n>skill}" />
+                    <Input value="{SkillModel>/YETENEK}" required="true" change="handleInputChange"/>
                 </f:content>
             </f:SimpleForm>
         </content>

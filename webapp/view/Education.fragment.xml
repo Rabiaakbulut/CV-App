@@ -7,7 +7,7 @@
       id="EducationDialog"
       title ="{i18n>educationDialogTitle}">
         <content>
-            <f:SimpleForm id="SimpleFormDisplay354"
+            <f:SimpleForm id="SimpleFormEducation"
                 editable="false"
                 layout="ResponsiveGridLayout"
                 labelSpanXL="3"
@@ -25,13 +25,13 @@
                 singleContainerFullSize="false" >
                 <f:content>
                     <Label text="{i18n>educationType}" />
-                    <ComboBox items="{/EducationSearchHelpSet}" selectedKey="{EducationModel>/EGITIM_TIPI}">
+                    <ComboBox items="{/EducationSearchHelpSet}" selectedKey="{EducationModel>/EGITIM_TIPI}" required="true" change="handleInputChange">
                         <core:Item key="{EducationType}" text="{EducationType}"/>
                     </ComboBox>  
                     <Label text="{i18n>school}" />
-                    <Input value="{EducationModel>/OKUL}"/>
+                    <Input value="{EducationModel>/OKUL}" required="true" change="handleInputChange"/>
                     <Label text="{i18n>department}" />
-                    <Input value="{EducationModel>/BOLUM}"/>
+                    <Input value="{EducationModel>/BOLUM}" required="true" change="handleInputChange"/>
                     <Label text="{i18n>graduationDate}" />
                     <DatePicker
                     id="DP4"
@@ -41,7 +41,7 @@
             </f:SimpleForm>
         </content>
         <buttons>
-            <Button text="{i18n>dialogCloseButtonText}" press="onCloseDialog"/>
+            <Button id="closeButton" text="{i18n>dialogCloseButtonText}" press="onCloseDialog"/>
             <Button text="{i18n>dialogSaveButtonText}" press="onSaveData"/>
         </buttons>
    </Dialog>

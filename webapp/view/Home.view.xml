@@ -32,29 +32,29 @@
                     <ColumnListItem> <!-- type="Navigation" press=".onPress"-->
                         <cells>
                             <ObjectIdentifier
-                                title="{CvInfoModel>NAME}"/>
+                                title="{CvInfoModel>AD}"/>
 				            <ObjectIdentifier title="{
-                                path: 'CvInfoModel>LAST_UPDATE',
+                                path: 'CvInfoModel>GUNCELLEME_TARIHI',
                                 type: 'sap.ui.model.type.Date',
                                 formatOptions: {
-                                pattern: 'dd.MM.YYYY'
+                                pattern: 'dd.MM.yyyy'
                                 }
                             }" />
                                 <HBox>
                                     <Button press="onPress" 
                                             icon="sap-icon://edit" 
-                                            visible="{= ${CvInfoModel>IS_CV_EXIST} === 'X'}"
+                                            visible="{= ${CvInfoModel>CV_MEVCUT} === 'X'}"
                                             class="sapUiTinyMarginEnd"/>
                                     <Button press="onDownloadCV" 
                                             icon="sap-icon://download" 
-                                            visible="{= ${CvInfoModel>IS_CV_EXIST} === 'X'}"
+                                            visible="{= ${CvInfoModel>CV_MEVCUT} === 'X'}"
                                             class="sapUiTinyMarginEnd"/>
                                     <Button press="onApproveDeleteCV($event)" 
                                             icon="sap-icon://delete"    
-                                            visible="{= ${CvInfoModel>IS_CV_EXIST} === 'X'}"/>
+                                            visible="{= ${CvInfoModel>CV_MEVCUT} === 'X'}"/>
                                     <Button press="onPress" 
                                             icon="sap-icon://add"   
-                                            visible="{= ${CvInfoModel>IS_CV_EXIST} === ''}"/>
+                                            visible="{= ${CvInfoModel>CV_MEVCUT} === ''}"/>
                                 </HBox >
                         </cells>
                     </ColumnListItem>

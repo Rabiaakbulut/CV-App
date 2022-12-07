@@ -1,0 +1,60 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+	xmlns:u="sap.ui.unified"
+    xmlns:mvc="sap.ui.core.mvc">
+   <Dialog
+      id="ExperienceDialog"
+      title ="{i18n>experienceDialogTitle}">
+        <content>
+            <f:SimpleForm id="SimpleFormExperience"
+                editable="false"
+                layout="ResponsiveGridLayout"
+                labelSpanXL="3"
+                labelSpanL="3"
+                labelSpanM="3"
+                labelSpanS="12"
+                adjustLabelSpan="false"
+                emptySpanXL="4"
+                emptySpanL="4"
+                emptySpanM="4"
+                emptySpanS="0"
+                columnsXL="1"
+                columnsL="1"
+                columnsM="1"
+                singleContainerFullSize="false" >
+                <f:content>
+                    <Label text="{i18n>company}" />
+                    <Input value="{ExperienceModel>/SIRKET}" required="true" change="handleInputChange"/>
+                    <Label text="{i18n>employeeTitle}" />
+                    <Input value="{ExperienceModel>/UNVAN}"/>
+                    <Label text="{i18n>workType}" />
+                    <ComboBox items="{/EmploymentSearchHelpSet}" selectedKey="{ExperienceModel>/ISTIHDAM_TURU}">
+                        <core:Item key="{IstihdamTuru}" text="{IstihdamTuru}"/>
+                    </ComboBox>  
+                    <Label text="{i18n>status}" />
+                    <CheckBox id="chckboxStatus" selected="{ExperienceModel>/DEVAM_DURUMU}"/>
+                    <Label text="{i18n>beginDate}" />
+                    <DatePicker
+                    id="ExperienceBeginDate"
+                    value="{path:'ExperienceModel>/BASLANGIC', type:'sap.ui.model.type.Date', formatOptions: { style: 'medium', strictParsing: true}}"
+                    class="sapUiSmallMarginBottom"
+                    required="true" 
+                    change="handleInputChange"/>
+                    <Label text="{i18n>endDate}" />
+                    <DatePicker
+                    id="ExperienceEndDate"
+                    value="{path:'ExperienceModel>/BITIS', type:'sap.ui.model.type.Date', formatOptions: { style: 'medium', strictParsing: true}}"
+                    class="sapUiSmallMarginBottom"
+                    visible="{path: 'ExperienceModel>/DEVAM_DURUMU', formatter: '.formatter.getNotValue'}"
+                    minDate="{ExperienceModel>/BASLANGIC}" />
+                </f:content>
+            </f:SimpleForm>
+        </content>
+        <buttons>
+            <Button id="closeButton" text="{i18n>dialogCloseButtonText}" press="onCloseDialog"/>
+            <Button text="{i18n>dialogSaveButtonText}" press="onSaveData"/>
+        </buttons>
+   </Dialog>
+</core:FragmentDefinition>

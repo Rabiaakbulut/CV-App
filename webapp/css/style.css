@@ -1,1 +1,9 @@
 /* Enter your custom styles here */
+.sapMMessageToastSuccess {
+    color: #415304 !important;
+    background-color: #f5fae5 !important;
+    border: 1px solid #cee67e !important;
+}
+Image:hover {
+    background: url('http://dummyimage.com/100x100/eb00eb/fff');
+}

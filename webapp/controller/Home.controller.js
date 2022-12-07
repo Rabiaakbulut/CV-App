@@ -48,7 +48,7 @@ sap.ui.define([
                 var oRouter = this.getOwnerComponent().getRouter();
                 oRouter.navTo("Cv", {
                     EmployeeId: window.encodeURIComponent(oItem.getBindingContext("CvInfoModel").getProperty("PERS_ID"))
-                });
+                },this);
             },
             onApproveDeleteCV: function(oEvent){
                 var that = this;
@@ -76,20 +76,20 @@ sap.ui.define([
                 this.oApproveDialog.open();
             },
             onDelete: function(sEmployeeId){
-            var that = this;
-            var sParams = {
-                PERS_ID: sEmployeeId
-            };
-            this.getView().getModel().callFunction("/DeleteCv",{
-                method:"GET",
-                urlParameters: sParams,
-                async: true,
-                success: function(oData){
-                    that.onGetData();
-                }.bind(this),
-                error: function(){
-                }
-            });
+                var that = this;
+                var sParams = {
+                    PERS_ID: sEmployeeId
+                };
+                this.getView().getModel().callFunction("/DeleteCV",{
+                    method:"GET",
+                    urlParameters: sParams,
+                    async: true,
+                    success: function(oData){
+                        that.onGetData();
+                    }.bind(this),
+                    error: function(){
+                    }
+                });
             }
         });
     });

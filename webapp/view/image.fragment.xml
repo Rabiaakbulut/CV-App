@@ -1,0 +1,43 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+	xmlns:u="sap.ui.unified">
+   <Dialog
+      id="ImageDialog"
+      title ="{i18n>imageDialogTitle}">
+        <content>
+            <f:SimpleForm id="SimpleFormDisplay354"
+                editable="false"
+                layout="ResponsiveGridLayout"
+                labelSpanXL="3"
+                labelSpanL="3"
+                labelSpanM="3"
+                labelSpanS="12"
+                adjustLabelSpan="false"
+                emptySpanXL="4"
+                emptySpanL="4"
+                emptySpanM="4"
+                emptySpanS="0"
+                columnsXL="1"
+                columnsL="1"
+                columnsM="1"
+                singleContainerFullSize="false" >
+                <f:content>
+					<u:FileUploader
+					id="fileUploader"
+					useMultipart="false"
+					sendXHR="true"
+					name="myFileUpload"
+					uploadUrl="/sap/opu/odata/sap/ZCV_APP_SRV/ImageSet"
+					tooltip="Upload your file to the local server"
+					uploadComplete="handleUploadComplete"/>
+                </f:content>
+            </f:SimpleForm>
+        </content>
+        <buttons>
+            <Button text="{i18n>dialogCloseButtonText}" press="onCloseDialog"/>
+            <Button text="{i18n>dialogSaveButtonText}" press="addImage"/>
+        </buttons>
+   </Dialog>
+</core:FragmentDefinition>
