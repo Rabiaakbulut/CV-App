@@ -26,10 +26,11 @@
                 <f:content>
                     <Label text="{i18n>certificateName}" />
                     <Input value="{CertificateModel>/SERTIFIKA_AD}" 
+                        maxLength="100"
                         required="true" 
                         change="handleInputChange"/>
                     <Label text="{i18n>establishment}" />
-                    <Input value="{CertificateModel>/VERILEN_KURUM}"/>
+                    <Input value="{CertificateModel>/VERILEN_KURUM}" maxLength="100"/>
                     <Label text="{i18n>validity}" />
                     <DatePicker
                     id="DP4"

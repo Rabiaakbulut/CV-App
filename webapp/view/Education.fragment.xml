@@ -29,9 +29,9 @@
                         <core:Item key="{EducationType}" text="{EducationType}"/>
                     </ComboBox>  
                     <Label text="{i18n>school}" />
-                    <Input value="{EducationModel>/OKUL}" required="true" change="handleInputChange"/>
+                    <Input value="{EducationModel>/OKUL}" required="true" change="handleInputChange" maxLength="50"/>
                     <Label text="{i18n>department}" />
-                    <Input value="{EducationModel>/BOLUM}" required="true" change="handleInputChange"/>
+                    <Input value="{EducationModel>/BOLUM}" required="true" change="handleInputChange" maxLength="50"/>
                     <Label text="{i18n>graduationDate}" />
                     <DatePicker
                     id="DP4"

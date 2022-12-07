@@ -26,9 +26,9 @@
                 singleContainerFullSize="false" >
                 <f:content>
                     <Label text="{i18n>company}" />
-                    <Input value="{ExperienceModel>/SIRKET}" required="true" change="handleInputChange"/>
+                    <Input value="{ExperienceModel>/SIRKET}" required="true" change="handleInputChange" maxLength="100"/>
                     <Label text="{i18n>employeeTitle}" />
-                    <Input value="{ExperienceModel>/UNVAN}"/>
+                    <Input value="{ExperienceModel>/UNVAN}" maxLength="100"/>
                     <Label text="{i18n>workType}" />
                     <ComboBox items="{/EmploymentSearchHelpSet}" selectedKey="{ExperienceModel>/ISTIHDAM_TURU}">
                         <core:Item key="{IstihdamTuru}" text="{IstihdamTuru}"/>

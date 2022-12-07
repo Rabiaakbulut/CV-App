@@ -194,8 +194,15 @@ sap.ui.define([
 					MessageToast.show("Kaydetme işlemi başarılı");
 					$( ".sapMMessageToast" ).addClass( "sapMMessageToastSuccess " );
                 }.bind(this),
-                error:function(){}
+                error:function(){
+					this.onGetData();
+					MessageToast.show("Kaydetme işlemi başarısız");
+					$( ".sapMMessageToast" ).addClass( "sapMMessageToastError " );
+				}.bind(this)
             });
+		},
+		scrollToTop:function(){
+			this.getView().byId("CVPage").scrollTo(0);
 		},
 		addImage: function(){
 			var sId = this.getView().getModel("CvInfoModel").getData().PERS_ID;
@@ -243,6 +250,28 @@ sap.ui.define([
 			  oInput.setValueStateText("Zorunlu alan");
 			} else {
 			  oInput.setValueState("None");
+			}
+		},
+		onSuggestCities: function (cityId) {
+			var oInput=this.getView().byId(cityId);
+			var aSuggestions = ["Adana","Adiyaman","Afyon","Agri","Aksaray","Amasya","Ankara","Antalya","Ardahan","Artvin","Aydin","Balikesir","Bartin","Batman","Bayburt","Bilecik","Bingol","Bitlis","Bolu","Burdur","Bursa","Canakkale","Cankiri","Corum","Denizli","Diyarbakir","Duzce","Edirne","Elazig","Erzincan","Erzurum","Eskisehir","Gaziantep","Giresun","Gumushane","Hakkari","Hatay","Igdir","Isparta","Istanbul","Izmir","Kahramanmaras","Karabuk","Karaman","Kars","Kastamonu","Kayseri","Kilis","Kirikkale","Kirklareli","Kirsehir","Kocaeli","Konya","Kutahya","Malatya","Manisa","Mardin","Mersin","Mugla","Mus","Nevsehir","Nigde","Ordu","Osmaniye","Rize","Sakarya","Samsun","Sanliurfa","Siirt","Sinop","Sirnak","Sivas","Tekirdag","Tokat","Trabzon","Tunceli","Usak","Van","Yalova","Yozgat","Zonguldak"];
+			
+			oInput.setModel(new sap.ui.model.json.JSONModel(aSuggestions));
+			oInput.bindAggregation("suggestionItems", {
+			path: "/",
+			template: new sap.ui.core.Item({
+				text: "{}"
+			}),
+			templateShareable: false
+			});
+		},
+		//ComboBox değerleri dışında bir şey seçilmişse uyar
+		onChangeComboBox:function(oEvent){
+			var newval = oEvent.getParameter("newValue");
+			var key = oEvent.getSource().getSelectedItem();
+  
+			if (newval !== "" && key === null){
+			  oEvent.getSource().setValue("");
 			}
 		},
         _getFragmentDialog: function(sRecordModel){

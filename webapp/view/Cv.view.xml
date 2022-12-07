@@ -7,6 +7,7 @@
 	xmlns:u="sap.ui.unified"
     height="100%">
 	<Page title="" 		
+	    id="CVPage"
 	    showNavButton="true"
 		navButtonPress=".onNavBack">
 	<l:VerticalLayout class="sapUiContentPadding" width="100%">
@@ -15,12 +16,14 @@
 			<Button text="{i18n>save}" press="onCreateDeepEntity"/>
 		</FlexBox>
 
+		<core:Icon press="scrollToTop" class="scroll" src="sap-icon://arrow-top"/>
+
 <!--FOTO ve INFO panel-->
 		<Panel class="sapUiDemoFlexBoxSizeAdjustments">
 			<FlexBox alignItems="Start">				
 				<VBox >
-					<Image press=".onAdd('Image')" 
-					id="employeeImg" 
+					<Button press=".onAdd('Image')" icon="sap-icon://edit"/>
+					<Image	id="employeeImg" 
 					src="/sap/opu/odata/sap/ZCV_APP_SRV/ImageSet(DocId='{CvInfoModel>/PERS_ID}')/$value" 
 					height="15rem" width="auto"/>
 					<layoutData>
@@ -49,11 +52,11 @@
 									<Label text="{i18n>id}" />
 									<Input editable="false" value="{CvInfoModel>/PERS_ID}"/>
 									<Label text="{i18n>name}" />
-									<Input editable="false" value="{CvInfoModel>/AD}"/>
+									<Input editable="false" value="{CvInfoModel>/AD}" maxLength="50"/>
 									<Label text="{i18n>phone}" />
-									<Input editable="false" value="{CvInfoModel>/TELEFON}"/>
+									<Input editable="false" value="{CvInfoModel>/TELEFON}" maxLength="20"/>
 									<Label text="{i18n>mail}" />
-									<Input editable="false" value="{CvInfoModel>/MAIL}"/>
+									<Input editable="false" value="{CvInfoModel>/MAIL}" maxLength="50"/>
 								</f:content>
 							</f:SimpleForm>					
 				    <layoutData>
@@ -86,35 +89,47 @@
 								singleContainerFullSize="false" >
 								<f:content>
 									<Label text="{i18n>education}" />
-									<Input value="{CvInfoModel>/EGITIM}"/>
+									<Input value="{CvInfoModel>/EGITIM}" maxLength="50"/>
 									<Label text="{i18n>birthPlaceTime}" />
-									<Input value="{CvInfoModel>/DOGUM_YERI}"/>
+									<Input id="cities1" value="{CvInfoModel>/DOGUM_YERI}" 
+									    maxLength="50"
+										showSuggestion="true"
+										suggest=".onSuggestCities('cities1')"
+										submit="true"/>
 									<DatePicker
 									id="DP4"
 									value="{path:'CvInfoModel>/DOGUM_TARIHI', type:'sap.ui.model.type.Date', formatOptions: { style: 'medium', strictParsing: true}}"
 									class="sapUiSmallMarginBottom"/>
 									<Label text="{i18n>maritalStatus}" />
-									<ComboBox selectedKey="{CvInfoModel>/MEDENI_DURUM}">
+									<ComboBox selectedKey="{CvInfoModel>/MEDENI_DURUM}" change="onChangeComboBox">
 										<items>
 											<core:Item text="Evli"  key="Evli"/>
 											<core:Item text="Bekar" key="Bekar"/>
 										</items>
 									</ComboBox>
 									<Label text="{i18n>militaryService}" />
-									<ComboBox selectedKey="{CvInfoModel>/ASKERLIK}">
+									<ComboBox selectedKey="{CvInfoModel>/ASKERLIK}" change="onChangeComboBox">
 										<items>
 											<core:Item text="Yapıldı"   key="Yapıldı"/>
 											<core:Item text="Yapılmadı" key="Yapılmadı"/>
 										</items>
 									</ComboBox>
 									<Label text="{i18n>drivingLicense}" />
-									<Input value="{CvInfoModel>/EHLIYET}"/>
+									<Input value="{CvInfoModel>/EHLIYET}" maxLength="20"/>
 									<Label text="{i18n>nationality}" />
-									<Input value="{CvInfoModel>/UYRUK}"/>
+									<Input value="{CvInfoModel>/UYRUK}" showSuggestion="true" maxLength="50">
+										<suggestionItems>
+											<core:Item text="Türkiye" />
+										</suggestionItems>
+									</Input>
 									<Label text="{i18n>language}" />
-									<Input value="{CvInfoModel>/LISAN}"/>
+									<Input value="{CvInfoModel>/LISAN}" maxLength="100"/>
 									<Label text="{i18n>city}" />
-									<Input value="{CvInfoModel>/SEHIR}"/>
+									<Input id="cities2" value="{CvInfoModel>/SEHIR}"
+									    maxLength="50" 
+										showSuggestion="true"
+										suggest=".onSuggestCities('cities2')"
+										submit="true"/>
 								</f:content>
 							</f:SimpleForm>
 					</content>
@@ -142,9 +157,9 @@
 								singleContainerFullSize="false" >
 								<f:content>
 								    <Label text="{i18n>employeeTitle}" />
-									<Input value="{CvInfoModel>/UNVAN}"/>
+									<Input value="{CvInfoModel>/UNVAN}" maxLength="50"/>
 									<Label text="{i18n>businessAddress}" />
-									<Input value="{CvInfoModel>/IS_ADRESI}"/>
+									<Input value="{CvInfoModel>/IS_ADRESI}" maxLength="200"/>
 									<Label text="{i18n>summary}" />
 									<TextArea id="textAreaWithBinding2" 
 											value="{CvInfoModel>/OZET}"
