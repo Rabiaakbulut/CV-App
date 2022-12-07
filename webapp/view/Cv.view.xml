@@ -14,7 +14,7 @@
 		<FlexBox alignItems="Start" justifyContent="End">
 			<Button text="{i18n>save}" press="onCreateDeepEntity"/>
 		</FlexBox>
-			
+
 <!--FOTO ve INFO panel-->
 		<Panel class="sapUiDemoFlexBoxSizeAdjustments">
 			<FlexBox alignItems="Start">				

@@ -196,7 +196,6 @@ sap.ui.define([
                 }.bind(this),
                 error:function(){}
             });
-			//window.location.reload();
 		},
 		addImage: function(){
 			var sId = this.getView().getModel("CvInfoModel").getData().PERS_ID;
@@ -225,12 +224,13 @@ sap.ui.define([
             oFileUploader.upload();
 			this._getFragmentDialog("Image").close();
 			this._getFragmentDialog("Image").destroy(true); 
-            return;
+			this.handleUploadComplete();
+            //return;
 		},
 		handleUploadComplete: function (oEvent) {
-			//RESİM GÜNCELLENMİYOR !!!!
-			// var oImage = this.getView().byId("employeeImg");
-			// oImage.setSrc(oImage.getSrc());
+			//Resim urlsini güncelle
+			var oImage = this.byId("employeeImg");
+			oImage.setSrc(oImage.getSrc() + "?" + new Date().getTime() );
 		},
 		//required inputlar boşsa uyar (veri girişine zorlamayı onSaveData içinde yaptım)
 		handleInputChange: function(oEvent){ 
