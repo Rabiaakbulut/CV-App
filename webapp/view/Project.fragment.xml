@@ -36,9 +36,7 @@
                     <TextArea id="textAreaWithBinding2" 
                             value="{ProjectModel>/SORUMLULUK}"
                             maxLength="200" 
-                            width="100%" 
-                            valueState="Information"
-			                valueStateText="açıklama (max 200 char)"/>
+                            width="100%" />
                     <Label text="{i18n>beginDate}" />            
                     <DatePicker
                     id="ProjectBeginDate"

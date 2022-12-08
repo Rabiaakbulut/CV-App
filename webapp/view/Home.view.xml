@@ -3,20 +3,17 @@
     xmlns="sap.m">
     <Page id="page" title="{i18n>title}">
         <content>
+        	<OverflowToolbar>
+				<SearchField liveChange=".onSearch" width="100%" placeholder="Ara..." />
+			</OverflowToolbar>
          <Table
                 id="table"
                 width="auto"
                 items="{CvInfoModel>/}"
                 growing="true"
-                growingScrollToLoad="true">
-                <headerToolbar>
-                    <OverflowToolbar>
-                        <Title
-                            id="tableHeader"
-                            text="{i18n>OverflowToolbar}"
-                            level="H3"/>
-                    </OverflowToolbar>
-                </headerToolbar>
+                growingScrollToLoad="true"
+                selectionChange=".onSelectionChange" 
+                includeItemInSelection="true">
                 <columns>
                     <Column>
                         <Text text="{i18n>name}"/>
@@ -28,6 +25,12 @@
                         <Text text="{i18n>actions}"/>
                     </Column>
                 </columns>
+                <!--Filtreleme için-->
+                <infoToolbar>
+				    <OverflowToolbar visible="false" id="idInfoToolbar">
+					    <Label id="idFilterLabel" />
+				    </OverflowToolbar>
+			    </infoToolbar>
                 <items>
                     <ColumnListItem> <!-- type="Navigation" press=".onPress"-->
                         <cells>

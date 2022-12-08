@@ -11,12 +11,14 @@ sap.ui.define([
 	"sap/m/library",
 	"sap/m/MessageToast",
 	"sap/m/Text",
-	"sap/m/TextArea"
+	"sap/m/TextArea",
+	"sap/ui/model/Filter",
+	"sap/ui/model/FilterOperator",
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller,JSONModel,Fragment, Core, HorizontalLayout, VerticalLayout, Dialog, Button, Label, mobileLibrary, MessageToast, Text, TextArea) {
+    function (Controller,JSONModel,Fragment, Core, HorizontalLayout, VerticalLayout, Dialog, Button, Label, mobileLibrary, MessageToast, Text, TextArea,Filter,FilterOperator) {
         "use strict";
 
         return Controller.extend("cvapp.controller.Home", {
@@ -90,6 +92,33 @@ sap.ui.define([
                     error: function(){
                     }
                 });
+            },
+            onSearch: function (oEvent) {
+                // add filter for search
+                var aFilters = [];
+                var sQuery = oEvent.getSource().getValue();
+                if (sQuery && sQuery.length > 0) {
+                    var filter = new Filter("AD", FilterOperator.Contains, sQuery);
+                    aFilters.push(filter);
+                }
+    
+                // update list binding
+                var oList = this.byId("table");
+                var oBinding = oList.getBinding("items");
+                oBinding.filter(aFilters, "Application");
+            },
+            onSelectionChange: function (oEvent) {
+                var oList = oEvent.getSource();
+                var oLabel = this.byId("idFilterLabel");
+                var oInfoToolbar = this.byId("idInfoToolbar");
+    
+                var aContexts = oList.getSelectedContexts(true);
+    
+                // update UI
+                var bSelected = (aContexts && aContexts.length > 0);
+                var sText = (bSelected) ? aContexts.length + " selected" : null;
+                oInfoToolbar.setVisible(bSelected);
+                oLabel.setText(sText);
             }
         });
     });

@@ -30,8 +30,8 @@
   "sap.ui": {
     "technology": "UI5",
     "icons": {
-      "icon": "",
-      "favIcon": "",
+			"icon": "",
+			"favIcon": "https://www.renovaconsulting.com/favicon.ico",
       "phone": "",
       "phone@2": "",
       "tablet": "",

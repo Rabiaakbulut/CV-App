@@ -131,11 +131,12 @@ sap.ui.define([
 					this._getFragmentDialog(sDialogName).destroy(true); 
 				}
 			}
-
+			else{
 			//düzenle butonuna basılıp zorunlu alan silinerek kaydedilmek istenirse 
 			//zorunlu alan dolmadan kapatma tuşuna izin verme
 			if(this.bEdit){
 				sap.ui.getCore().byId("closeButton").setEnabled(false);
+			}
 			}
         },
 		isMandatoryFieldEmpty: function(sDialogName){
@@ -200,6 +201,10 @@ sap.ui.define([
 					$( ".sapMMessageToast" ).addClass( "sapMMessageToastError " );
 				}.bind(this)
             });
+		},
+		//personel resmi bulunamazsa default resmi koy
+		errorLoadImage:function(){
+			this.getView().byId("employeeImg").setSrc("/Image/employee.png");
 		},
 		scrollToTop:function(){
 			this.getView().byId("CVPage").scrollTo(0);

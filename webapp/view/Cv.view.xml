@@ -13,19 +13,21 @@
 	<l:VerticalLayout class="sapUiContentPadding" width="100%">
 		<l:content>
 		<FlexBox alignItems="Start" justifyContent="End">
-			<Button text="{i18n>save}" press="onCreateDeepEntity"/>
+			<Button text="{i18n>save}" press="onCreateDeepEntity" icon="sap-icon://sys-enter-2"/>
 		</FlexBox>
 
 		<core:Icon press="scrollToTop" class="scroll" src="sap-icon://arrow-top"/>
 
 <!--FOTO ve INFO panel-->
 		<Panel class="sapUiDemoFlexBoxSizeAdjustments">
-			<FlexBox alignItems="Start">				
-				<VBox >
-					<Button press=".onAdd('Image')" icon="sap-icon://edit"/>
+			<FlexBox alignItems="Start" wrap="Wrap">				
+				<VBox alignItems="Center">
 					<Image	id="employeeImg" 
 					src="/sap/opu/odata/sap/ZCV_APP_SRV/ImageSet(DocId='{CvInfoModel>/PERS_ID}')/$value" 
-					height="15rem" width="auto"/>
+					height="10rem" 
+					width="auto"
+					press=".onAdd('Image')"
+					error="errorLoadImage"/>
 					<layoutData>
                     	<FlexItemData growFactor="1"/>
     				</layoutData>
@@ -68,7 +70,7 @@
 
 <!--INFO2 panel-->
 		<Panel class="sapUiDemoFlexBoxSizeAdjustments">
-			<FlexBox alignItems="Start">
+			<FlexBox alignItems="Start" wrap="Wrap">
 				<Panel>
 					<content>
 						<f:SimpleForm id="SimpleForm2"
