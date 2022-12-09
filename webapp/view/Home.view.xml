@@ -24,6 +24,9 @@
                     <Column>
                         <Text text="{i18n>actions}"/>
                     </Column>
+					<Column>
+							<Text text=""/>
+					</Column>
                 </columns>
                 <!--Filtreleme için-->
                 <infoToolbar>
@@ -48,17 +51,16 @@
                                             icon="sap-icon://edit" 
                                             visible="{= ${CvInfoModel>CV_MEVCUT} === 'X'}"
                                             class="sapUiTinyMarginEnd"/>
-                                    <Button press="onDownloadCV" 
-                                            icon="sap-icon://download" 
-                                            visible="{= ${CvInfoModel>CV_MEVCUT} === 'X'}"
-                                            class="sapUiTinyMarginEnd"/>
                                     <Button press="onApproveDeleteCV($event)" 
                                             icon="sap-icon://delete"    
                                             visible="{= ${CvInfoModel>CV_MEVCUT} === 'X'}"/>
                                     <Button press="onPress" 
                                             icon="sap-icon://add"   
-                                            visible="{= ${CvInfoModel>CV_MEVCUT} === ''}"/>
+                                            visible="{= ${CvInfoModel>CV_MEVCUT} === ''}"/>                                            
                                 </HBox >
+                                <PDFViewer source="/sap/opu/odata/sap/ZCV_APP_SRV/PdfSet(DocId='{CvInfoModel>PERS_ID}')/$value" 
+                                height="100px"
+                                visible="{= ${CvInfoModel>CV_MEVCUT} === 'X'}"/>
                         </cells>
                     </ColumnListItem>
                 </items>

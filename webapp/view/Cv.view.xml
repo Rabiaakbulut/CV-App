@@ -17,7 +17,7 @@
 		</FlexBox>
 
 		<core:Icon press="scrollToTop" class="scroll" src="sap-icon://arrow-top"/>
-
+		
 <!--FOTO ve INFO panel-->
 		<Panel class="sapUiDemoFlexBoxSizeAdjustments">
 			<FlexBox alignItems="Start" wrap="Wrap">				
@@ -296,22 +296,8 @@
 									title="{CvInfoModel>GOREV}"/>
 								<ObjectIdentifier
 									title="{CvInfoModel>SORUMLULUK}"/>
-								<VBox >
-									<ObjectIdentifier title="{
-										path: 'CvInfoModel>PROJE_BASLANGIC',
-										type: 'sap.ui.model.type.Date',
-										formatOptions: {
-										pattern: 'dd.MM.YYYY'
-										}
-									}" />
-									<ObjectIdentifier title="{
-										path: 'CvInfoModel>PROJE_BITIS',
-										type: 'sap.ui.model.type.Date',
-										formatOptions: {
-										pattern: 'dd.MM.YYYY'
-										}
-									}" />
-								</VBox>
+								<ObjectIdentifier
+									title="{CvInfoModel>SURE}"/>
 								<FlexBox justifyContent="End">
 									<Button press=".onEdit($event,'Project')"   icon="sap-icon://edit" class="sapUiTinyMarginEnd"/> 
 									<Button press=".onApproveDeletePress($event,'Project')" icon="sap-icon://delete"/> 

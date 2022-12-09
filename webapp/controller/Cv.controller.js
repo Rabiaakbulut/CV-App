@@ -175,16 +175,16 @@ sap.ui.define([
 					}
 				}
 			}
-			if(sSimpleFormName=="SimpleFormProject")
-			{
-				var oProjectBegin = sap.ui.getCore().byId("ProjectBeginDate");
-				var oProjectEnd = sap.ui.getCore().byId("ProjectEndDate");
-				if(oProjectEnd.getValue() !=="" && (oProjectBegin.getValue() > oProjectEnd.getValue())){
-					oProjectEnd.setValueState("Error");
-					oProjectEnd.setValueStateText("Başlangıç tarihinden sonraki bir zamanı seçin");
-					bDate=true;
-				}
-			}
+			// if(sSimpleFormName=="SimpleFormProject")
+			// {
+			// 	var oProjectBegin = sap.ui.getCore().byId("ProjectBeginDate");
+			// 	var oProjectEnd = sap.ui.getCore().byId("ProjectEndDate");
+			// 	if(oProjectEnd.getValue() !=="" && (oProjectBegin.getValue() > oProjectEnd.getValue())){
+			// 		oProjectEnd.setValueState("Error");
+			// 		oProjectEnd.setValueStateText("Başlangıç tarihinden sonraki bir zamanı seçin");
+			// 		bDate=true;
+			// 	}
+			// }
 			return bDate; //true: tarih yanlış
 		},
 		onCreateDeepEntity: function(){

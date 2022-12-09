@@ -25,28 +25,20 @@
                 singleContainerFullSize="false" >
                 <f:content>
                     <Label text="{i18n>projectName}" />
-                    <Input value="{ProjectModel>/PROJE_AD}" required="true" change="handleInputChange"/>
+                    <Input value="{ProjectModel>/PROJE_AD}" required="true" change="handleInputChange" maxLength="50"/>
                     <Label text="{i18n>customer}" />
-                    <Input value="{ProjectModel>/MUSTERI}"/>
+                    <Input value="{ProjectModel>/MUSTERI}" maxLength="50"/>
                     <Label text="{i18n>sector}" />
-                    <Input value="{ProjectModel>/SEKTOR}"/>
+                    <Input value="{ProjectModel>/SEKTOR}" maxLength="50"/>
                     <Label text="{i18n>mission}" />
-                    <Input value="{ProjectModel>/GOREV}"/>
+                    <Input value="{ProjectModel>/GOREV}" maxLength="50"/>
                     <Label text="{i18n>responsibility}" />
                     <TextArea id="textAreaWithBinding2" 
                             value="{ProjectModel>/SORUMLULUK}"
-                            maxLength="200" 
+                            maxLength="300" 
                             width="100%" />
-                    <Label text="{i18n>beginDate}" />            
-                    <DatePicker
-                    id="ProjectBeginDate"
-                    value="{path:'ProjectModel>/PROJE_BASLANGIC', type:'sap.ui.model.type.Date', formatOptions: { style: 'medium', strictParsing: true}}"
-                    class="sapUiSmallMarginBottom"/>
-                    <Label text="{i18n>endDate}" />
-                    <DatePicker
-                    id="ProjectEndDate"
-                    value="{path:'ProjectModel>/PROJE_BITIS', type:'sap.ui.model.type.Date', formatOptions: { style: 'medium', strictParsing: true}}"
-                    class="sapUiSmallMarginBottom"/>
+                    <Label text="{i18n>duration}" />            
+                    <Input value="{ProjectModel>/SURE}" maxLength="50"/>
                 </f:content>
             </f:SimpleForm>
         </content>
