@@ -59,7 +59,7 @@
                                             visible="{= ${CvInfoModel>CV_MEVCUT} === ''}"/>                                            
                                 </HBox >
                                 <PDFViewer source="/sap/opu/odata/sap/ZCV_APP_SRV/PdfSet(DocId='{CvInfoModel>PERS_ID}')/$value" 
-                                height="100px"
+                                displayType="Link"
                                 visible="{= ${CvInfoModel>CV_MEVCUT} === 'X'}"/>
                         </cells>
                     </ColumnListItem>
