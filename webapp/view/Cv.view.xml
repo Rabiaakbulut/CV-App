@@ -198,32 +198,32 @@
                     </OverflowToolbar>
                 </headerToolbar>
 					<columns>
-						<Column>
+						<Column mergeDuplicates="true" width="15%">
 							<Text text="{i18n>educationType}"/>
 						</Column>
-						<Column >
+						<Column width="30%">
 							<Text text="{i18n>school}"/>
 						</Column>
-						<Column>
+						<Column width="30%">
 							<Text text="{i18n>department}"/>
 						</Column>
-						<Column>
+						<Column width="auto">
 							<Text text="{i18n>graduationDate}"/>
 						</Column>
-						<Column hAlign="End" minScreenWidth="Small">
+						<Column hAlign="End"> <!-- minScreenWidth="Small"-->
 							<Text text=""/>
 						</Column>
 					</columns>
 					<items>
 						<ColumnListItem>
 							<cells>
-								<ObjectIdentifier
-									title="{CvInfoModel>EGITIM_TIPI}"/>
-								<ObjectIdentifier
-									title="{CvInfoModel>OKUL}"/>
-								<ObjectIdentifier
-									title="{CvInfoModel>BOLUM}"/>
-								<ObjectIdentifier title="{
+								<Text
+									text="{CvInfoModel>EGITIM_TIPI}"/>
+								<Text
+									text="{CvInfoModel>OKUL}"/>
+								<Text
+									text="{CvInfoModel>BOLUM}"/>
+								<Text text="{
                                 path: 'CvInfoModel>MEZUNIYET_TARIHI',
 									type: 'sap.ui.model.type.Date',
 									formatOptions: {
@@ -261,22 +261,22 @@
                     </OverflowToolbar>
                 </headerToolbar>
 					<columns>
-						<Column >
+						<Column width="20%">
 							<Text text="{i18n>projectName}"/>
 						</Column>
-						<Column>
+						<Column width="20%">
 							<Text text="{i18n>customer}"/>
 						</Column>
-						<Column>
+						<Column width="auto">
 							<Text text="{i18n>sector}"/>
 						</Column>
-						<Column>
+						<Column width="auto">
 							<Text text="{i18n>mission}"/>
 						</Column>
-						<Column>
+						<Column width="30%">
 							<Text text="{i18n>responsibility}"/>
 						</Column>
-						<Column>
+						<Column width="auto">
 							<Text text="{i18n>duration}"/>
 						</Column>
 						<Column hAlign="End" minScreenWidth="Small">
@@ -286,18 +286,18 @@
 					<items>
 						<ColumnListItem>
 							<cells>
-								<ObjectIdentifier
-									title="{CvInfoModel>PROJE_AD}"/>
-								<ObjectIdentifier
-									title="{CvInfoModel>MUSTERI}"/>
-								<ObjectIdentifier
-									title="{CvInfoModel>SEKTOR}"/>
-								<ObjectIdentifier
-									title="{CvInfoModel>GOREV}"/>
-								<ObjectIdentifier
-									title="{CvInfoModel>SORUMLULUK}"/>
-								<ObjectIdentifier
-									title="{CvInfoModel>SURE}"/>
+								<Text
+									text="{CvInfoModel>PROJE_AD}"/>
+								<Text
+									text="{CvInfoModel>MUSTERI}"/>
+								<Text
+									text="{CvInfoModel>SEKTOR}"/>
+								<Text
+									text="{CvInfoModel>GOREV}"/>
+								<Text
+									text="{CvInfoModel>SORUMLULUK}"/>
+								<Text
+									text="{CvInfoModel>SURE}"/>
 								<FlexBox justifyContent="End">
 									<Button press=".onEdit($event,'Project')"   icon="sap-icon://edit" class="sapUiTinyMarginEnd"/> 
 									<Button press=".onApproveDeletePress($event,'Project')" icon="sap-icon://delete"/> 
@@ -351,13 +351,13 @@
 					<items>
 						<ColumnListItem>
 							<cells>
-								<ObjectIdentifier
-									title="{CvInfoModel>SIRKET}"/>
-								<ObjectIdentifier
-									title="{CvInfoModel>UNVAN}"/>
-								<ObjectIdentifier
-									title="{CvInfoModel>ISTIHDAM_TURU}"/>
-								<ObjectIdentifier title="{
+								<Text
+									text="{CvInfoModel>SIRKET}"/>
+								<Text
+									text="{CvInfoModel>UNVAN}"/>
+								<Text
+									text="{CvInfoModel>ISTIHDAM_TURU}"/>
+								<Text text="{
 										path: 'CvInfoModel>BASLANGIC',
 										type: 'sap.ui.model.type.Date',
 										formatOptions: {
@@ -365,7 +365,7 @@
 										}
 									}" />
 								<FlexBox>								
-									<ObjectIdentifier title="{
+									<Text text="{
 										path: 'CvInfoModel>BITIS',
 										type: 'sap.ui.model.type.Date',
 										formatOptions: {
@@ -373,7 +373,7 @@
 										}
 									}" 
 										visible="{= ${CvInfoModel>DEVAM_DURUMU} !== true}"/>
-                                    <ObjectIdentifier title="Devam" 
+                                    <Text text="Devam" 
 										visible="{= ${CvInfoModel>DEVAM_DURUMU} === true}"/>
 								</FlexBox>									
 								<FlexBox justifyContent="End">
@@ -407,27 +407,27 @@
                     </OverflowToolbar>
                 </headerToolbar>
 					<columns>
-						<Column >
+						<Column width="40%">
 							<Text text="{i18n>certificateName}"/>
 						</Column>
-						<Column>
+						<Column width="30%">
 							<Text text="{i18n>establishment}"/>
 						</Column>
-						<Column>
+						<Column width="auto">
 							<Text text="{i18n>validity}"/>
 						</Column>
-						<Column hAlign="End" minScreenWidth="Small">
+						<Column hAlign="End" >
 							<Text text=""/>
 						</Column>
 					</columns>
 					<items>
 						<ColumnListItem>
 							<cells>
-								<ObjectIdentifier
-									title="{CvInfoModel>SERTIFIKA_AD}"/>
-								<ObjectIdentifier
-									title="{CvInfoModel>VERILEN_KURUM}"/>
-								<ObjectIdentifier title="{
+								<Text
+									text="{CvInfoModel>SERTIFIKA_AD}"/>
+								<Text
+									text="{CvInfoModel>VERILEN_KURUM}"/>
+								<Text text="{
 									path: 'CvInfoModel>GECERLILIK_SURESI',
 									type: 'sap.ui.model.type.Date',
 									formatOptions: {
@@ -468,15 +468,15 @@
 						<Column >
 							<Text text="{i18n>skill}"/>
 						</Column>
-						<Column hAlign="End" minScreenWidth="Small">
+						<Column hAlign="End">
 							<Text text=""/>
 						</Column>
 					</columns>
 					<items>
 						<ColumnListItem>
 							<cells>
-								<ObjectIdentifier
-									title="{CvInfoModel>YETENEK}"/>
+								<Text
+									text="{CvInfoModel>YETENEK}"/>
 								<FlexBox justifyContent="End">
 									<Button press=".onEdit($event,'Skill')"   icon="sap-icon://edit" class="sapUiTinyMarginEnd"/> 
 									<Button press=".onApproveDeletePress($event,'Skill')" icon="sap-icon://delete"/> 

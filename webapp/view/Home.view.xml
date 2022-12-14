@@ -21,11 +21,8 @@
                     <Column>
                         <Text text="{i18n>lastUpdate}"/>
                     </Column>
-                    <Column>
-                        <Text text="{i18n>actions}"/>
-                    </Column>
 					<Column>
-							<Text text=""/>
+						<Text text=""/>
 					</Column>
                 </columns>
                 <!--Filtreleme için-->
@@ -46,21 +43,22 @@
                                 pattern: 'dd.MM.yyyy'
                                 }
                             }" />
-                                <HBox>
+                                <HBox justifyContent="End">
                                     <Button press="onPress" 
                                             icon="sap-icon://edit" 
                                             visible="{= ${CvInfoModel>CV_MEVCUT} === 'X'}"
                                             class="sapUiTinyMarginEnd"/>
+                                    <Button press="onDownloadCV" 
+                                            icon="sap-icon://download"   
+                                            visible="{= ${CvInfoModel>CV_MEVCUT} === 'X'}"
+                                            class="sapUiTinyMarginEnd"/>    
                                     <Button press="onApproveDeleteCV($event)" 
                                             icon="sap-icon://delete"    
                                             visible="{= ${CvInfoModel>CV_MEVCUT} === 'X'}"/>
                                     <Button press="onPress" 
                                             icon="sap-icon://add"   
-                                            visible="{= ${CvInfoModel>CV_MEVCUT} === ''}"/>                                            
+                                            visible="{= ${CvInfoModel>CV_MEVCUT} === ''}"/>                             
                                 </HBox >
-                                <PDFViewer source="/sap/opu/odata/sap/ZCV_APP_SRV/PdfSet(DocId='{CvInfoModel>PERS_ID}')/$value" 
-                                displayType="Link"
-                                visible="{= ${CvInfoModel>CV_MEVCUT} === 'X'}"/>
                         </cells>
                     </ColumnListItem>
                 </items>

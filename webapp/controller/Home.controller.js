@@ -52,6 +52,31 @@ sap.ui.define([
                     EmployeeId: window.encodeURIComponent(oItem.getBindingContext("CvInfoModel").getProperty("PERS_ID"))
                 },this);
             },
+            onDownloadCV:function(oEvent){
+                var sEmployeeId = oEvent.getSource().getBindingContext("CvInfoModel").getProperty().PERS_ID;
+                var oDialog = new sap.m.Dialog({
+                    title: "PDF", 
+                    content: [
+                      new sap.m.PDFViewer({
+                        source:"/sap/opu/odata/sap/ZCV_APP_SRV/PdfSet(PdfType='1',DocId='"+sEmployeeId+"')/$value" ,
+                        displayType:"Embedded"
+                      }),
+                      new sap.m.PDFViewer({
+                        source:"/sap/opu/odata/sap/ZCV_APP_SRV/PdfSet(PdfType='2',DocId='"+sEmployeeId+"')/$value" ,
+                        displayType:"Embedded"
+                      })
+                    ],
+                    buttons: [
+                      new sap.m.Button({
+                        text: "Kapat",
+                        press: function() {
+                          oDialog.close();
+                        }
+                      })
+                    ]
+                  });
+                oDialog.open();
+            },
             onApproveDeleteCV: function(oEvent){
                 var that = this;
                 var sEmployeeId = oEvent.getSource().getBindingContext("CvInfoModel").getProperty().PERS_ID;
