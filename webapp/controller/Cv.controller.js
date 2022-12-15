@@ -1,7 +1,6 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
     "sap/ui/model/json/JSONModel",
-	"sap/ui/core/routing/History",
 	"sap/ui/core/Fragment",
 	"sap/ui/core/Core",
 	"sap/ui/layout/HorizontalLayout",
@@ -14,7 +13,7 @@ sap.ui.define([
 	"sap/m/Text",
 	"sap/m/TextArea",
 	"../model/formatter"
-], function (Controller,JSONModel,History,Fragment, Core, HorizontalLayout, VerticalLayout, Dialog, Button, Label, mobileLibrary, MessageToast, Text, TextArea,formatter) {
+], function (Controller,JSONModel,Fragment, Core, HorizontalLayout, VerticalLayout, Dialog, Button, Label, mobileLibrary, MessageToast, Text, TextArea,formatter) {
 	"use strict";
 	return Controller.extend("cvapp.controller.Cv", {
 		formatter: formatter,
@@ -296,15 +295,8 @@ sap.ui.define([
 			this.bEdit = false;
 		},
 		onNavBack: function () {
-			var oHistory = History.getInstance();
-			var sPreviousHash = oHistory.getPreviousHash();
-
-			if (sPreviousHash !== undefined) {
-				window.history.go(-1);
-			} else {
-				var oRouter = this.getOwnerComponent().getRouter();
-				oRouter.navTo("Home", {}, true);
-			}
+			var oRouter = this.getOwnerComponent().getRouter();
+			oRouter.navTo("RouteHome", {}, true);
 		},	
 		onApproveDeletePress: function (oEvent, sDialogName) {
 			var that = this;

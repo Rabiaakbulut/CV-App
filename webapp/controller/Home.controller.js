@@ -25,6 +25,12 @@ sap.ui.define([
             onInit: function () {
                 var oModel = new JSONModel();
                 this.getView().setModel(oModel,"CvInfoModel");
+
+                var oRouter = this.getOwnerComponent().getRouter();
+                oRouter.getRoute("RouteHome").attachPatternMatched(this._onObjectMatched, this);
+            },
+            _onObjectMatched: function () {
+                this.onGetData();
             },
             onAfterRendering: function(){
                 this.onGetData();

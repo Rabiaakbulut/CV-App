@@ -9,7 +9,7 @@
          <Table
                 id="table"
                 width="auto"
-                items="{CvInfoModel>/}"
+                items="{path: 'CvInfoModel>/' , sorter: { path: 'CvInfoModel>AD', descending: false }}"
                 growing="true"
                 growingScrollToLoad="true"
                 selectionChange=".onSelectionChange" 
