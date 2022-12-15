@@ -104,8 +104,11 @@ sap.ui.define([
 
 			//Zorunlu alanlar boş mu & tarihler doğru mu
 			var bCondition1 = this.isMandatoryFieldEmpty(sDialogName); 
- 			var bCondition2 = this.isDateFalse(sDialogName);
-
+			var bCondition2 = false;
+			if(sDialogName=="Experience"){
+				var bCondition2 = this.isDateFalse();
+			}
+ 			
 			//koşullar sağlanıyorsa güncelle veya kaydet
 			if(bCondition1==false && bCondition2==false) 
 			{
@@ -158,34 +161,23 @@ sap.ui.define([
 			 });
 			 return bIsEmpty; //ture: zorunlu alanlar dolmamış
 		},
-		isDateFalse: function(sDialogName){
-			var sSimpleFormName = 'SimpleForm';
-			sSimpleFormName=sSimpleFormName.concat(sDialogName); //SimpleFormEducation gibi...
+		isDateFalse: function(){
 			var bDate=false;
-			if(sSimpleFormName=="SimpleFormExperience")
+			if(!sap.ui.getCore().byId("chckboxStatus").getSelected())
 			{
-				if(!sap.ui.getCore().byId("chckboxStatus").getSelected())
-				{
-					var oExpBegin = sap.ui.getCore().byId("ExperienceBeginDate");
-					var oExpEnd = sap.ui.getCore().byId("ExperienceEndDate");
-					if(oExpEnd.getValue() !=="" && (oExpBegin.getValue() > oExpEnd.getValue())){
-						oExpEnd.setValueState("Error");
-						oExpEnd.setValueStateText("Başlangıç tarihinden sonraki bir zamanı seçin");
-						bDate=true;
-					}
+				var oExpBegin = sap.ui.getCore().byId("ExperienceBeginDate");
+				var oExpEnd = sap.ui.getCore().byId("ExperienceEndDate");
+				var date1 = oExpBegin.getValue();
+				var date2 = oExpEnd.getValue();
+				var date1Obj = new Date(date1);
+				var date2Obj = new Date(date2);
+				if(oExpEnd.getValue() !=="" && (date1Obj.getTime() > date2Obj.getTime())){
+					oExpEnd.setValueState("Error");
+					oExpEnd.setValueStateText("Başlangıç tarihinden sonraki bir zamanı seçin");
+					bDate=true;
 				}
 			}
-			// if(sSimpleFormName=="SimpleFormProject")
-			// {
-			// 	var oProjectBegin = sap.ui.getCore().byId("ProjectBeginDate");
-			// 	var oProjectEnd = sap.ui.getCore().byId("ProjectEndDate");
-			// 	if(oProjectEnd.getValue() !=="" && (oProjectBegin.getValue() > oProjectEnd.getValue())){
-			// 		oProjectEnd.setValueState("Error");
-			// 		oProjectEnd.setValueStateText("Başlangıç tarihinden sonraki bir zamanı seçin");
-			// 		bDate=true;
-			// 	}
-			// }
-			return bDate; //true: tarih yanlış
+			return bDate; //true ise: tarih yanlış demek
 		},
 		onCreateDeepEntity: function(){
 			var sRequest = this.getView().getModel("CvInfoModel").getData();
