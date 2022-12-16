@@ -46,7 +46,9 @@ sap.ui.define([
                     var oModel = new JSONModel(oData);
                     that.getView().setModel(oModel,"CvInfoModel")
                 }.bind(this),
-                error: function(){}
+                error: function(){
+					//
+				}
             })
 		},
 		onAdd: function (sData){ //buton parametresini tutar (Education, Project, Certificate gibi değerler alır)

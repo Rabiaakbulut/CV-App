@@ -90,7 +90,10 @@
         "viewPath": "cvapp.view",
         "controlAggregation": "pages",
         "controlId": "app",
-        "clearControlAggregation": false
+        "clearControlAggregation": false,
+        "bypassed": {
+           "target": "notFound"
+        }
       },
       "routes": [
         {
@@ -117,6 +120,11 @@
         "Cv": {
           "viewId": "Cv",
           "viewName": "Cv" 
+        },
+        "notFound": {
+          "viewId": "notFound",
+          "viewName": "NotFound",
+          "transition": "show"
         }
       }
     },
