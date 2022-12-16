@@ -107,6 +107,11 @@
           "pattern": "Cv/{EmployeeId}",
           "name": "Cv",
           "target": "Cv"
+        },
+        {
+          "pattern": "notFound",
+          "name": "notFound",
+          "target": "notFound"
         }
       ],
       "targets": {

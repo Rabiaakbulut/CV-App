@@ -26,11 +26,35 @@ sap.ui.define([
 		},
 		_onObjectMatched: function (oEvent) {
 			this.employeeId = oEvent.getParameter("arguments").EmployeeId;
-			this.getView().bindElement({
-				path: "/" + window.decodeURIComponent(oEvent.getParameter("arguments").EmployeeId),
-				model: "CvInfoModel"
+			this.checkEmployeeExist(this.employeeId);
+		},
+		checkEmployeeExist: function(empId){
+			var that = this;
+			var sParams = {
+				PERS_ID: empId
+			};
+			this.getView().getModel().callFunction("/EmployeeExist",{
+				method:"GET",
+				urlParameters: sParams,
+				async: true,
+				success: function(oData){
+					//personel mevcut değilse ana sayfaya dön
+					if(oData.EmployeeExist.isEmpExist == 'false'){
+						var oRouter = this.getOwnerComponent().getRouter();
+						oRouter.navTo("RouteHome", {}, true);
+					}
+					//personel mevcutsa detay sayfasına git
+					else{
+						this.getView().bindElement({
+							path: "/" + window.decodeURIComponent(empId),
+							model: "CvInfoModel"
+						});
+						this.onGetData();
+					};
+				}.bind(this),
+				error: function(){
+				}
 			});
-			this.onGetData();
 		},
 		onAfterRendering: function(){
 			this.onGetData();

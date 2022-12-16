@@ -65,11 +65,13 @@ sap.ui.define([
                     content: [
                       new sap.m.PDFViewer({
                         source:"/sap/opu/odata/sap/ZCV_APP_SRV/PdfSet(PdfType='1',DocId='"+sEmployeeId+"')/$value" ,
-                        displayType:"Embedded"
+                        displayType:"Link",
+                        title:'CV 1'
                       }),
                       new sap.m.PDFViewer({
                         source:"/sap/opu/odata/sap/ZCV_APP_SRV/PdfSet(PdfType='2',DocId='"+sEmployeeId+"')/$value" ,
-                        displayType:"Embedded"
+                        displayType:"Link",
+                        title:'CV 2'
                       })
                     ],
                     buttons: [

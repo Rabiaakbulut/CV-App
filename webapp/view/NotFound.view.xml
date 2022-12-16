@@ -2,8 +2,12 @@
    controllerName="cvapp.controller.NotFound"
    xmlns="sap.m"
    xmlns:mvc="sap.ui.core.mvc">
-   <MessagePage
-      title="{i18n>NotFound}"
-      text="{i18n>NotFound.text}"
-      description="{i18n>NotFound.description}"/> 
+   <Page title="" 
+	   showNavButton="true"
+		navButtonPress=".onNavBack">
+      <MessagePage
+         title="{i18n>NotFound}"
+         text="{i18n>NotFound.text}"
+         description="{i18n>NotFound.description}"/> 
+   </Page>
 </mvc:View>
